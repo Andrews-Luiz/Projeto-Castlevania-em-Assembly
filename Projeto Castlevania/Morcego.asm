@@ -1,0 +1,1 @@
+# morcego.asm - Controla o inimigo Morcego. Gerencia o sprite, movimento e dano ao jogador por contato.

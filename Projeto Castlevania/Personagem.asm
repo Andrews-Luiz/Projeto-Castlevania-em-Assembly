@@ -1,0 +1,1 @@
+# Personagem.asm - Controla o personagem Richter Belmont. Gerencia o sprite, movimentacao, pulo e combate com o chicote.

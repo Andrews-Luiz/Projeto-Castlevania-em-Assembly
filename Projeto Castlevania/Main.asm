@@ -1,0 +1,1 @@
+# main.asm - Arquivo principal do jogo. Inicializa o jogo, importa todos os modulos e executa o game loop principal.

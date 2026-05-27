@@ -1,0 +1,1 @@
+# hud.asm - Exibe a interface do jogo. Desenha as barras de vida do jogador e do inimigo na parte superior da tela.

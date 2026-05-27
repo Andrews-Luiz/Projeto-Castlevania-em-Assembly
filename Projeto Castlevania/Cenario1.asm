@@ -1,4 +1,6 @@
-# Projeto Castlevania - Assembly Mips
+# cenario1.asm - Desenha o cenario 1: Entrada do Castelo. Contem os loops de renderizacao do ceu, arvores, parede e chao.
+
+-
 # .word significa que voce esta reservando 4 bytes de memoria para guardar 32 bits
 .data # declara cores e variáveis do programa, cores, sprites e variáveis por exemplo
    base_address: .word 0x10010000 

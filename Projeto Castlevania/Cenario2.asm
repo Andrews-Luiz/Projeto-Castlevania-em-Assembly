@@ -1,0 +1,1 @@
+# cenario2.asm - Desenha o cenario 2: Saguao do Castelo. Contem os loops de renderizacao das paredes internas, colunas e chao.

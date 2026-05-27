@@ -1,0 +1,1 @@
+# musica.asm - Reproduz a trilha sonora do jogo. Toca uma melodia inspirada em Bloody Tears via syscalls MIDI do MARS.=
