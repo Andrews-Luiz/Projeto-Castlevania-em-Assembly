@@ -1,0 +1,107 @@
+.data
+    # Base do Bitmap Display
+    base: .word 0x10010000
+
+.text
+main:
+    # Carregar endereço base
+    lui  $t0, 0x1001        # $t0 = 0x10010000
+
+    # Calcular offset: (linha * largura + coluna) * 4
+    # linha=3, largura=32 pixels, coluna=5
+    li   $t1, 3             # linha
+    li   $t2, 5            # largura (pixels)
+    mul  $t1, $t1, $t2      # linha * largura = 96
+    addi $t1, $t1, 8        # + coluna = 101
+    sll  $t1, $t1, 2        # * 4 = 404 (offset em bytes)
+
+    # Cor vermelha em RGB: 0x00FF0000
+    li   $t3, 0x005D4B3D
+
+    # Escrever na memória → acende o pixel
+    add  $t4, $t0, $t1      # endereço = base + offset
+    addi $t5, $t4, 512
+    sw   $t3, 0($t5)
+    addi $t5, $t5, 256        # +1 linha
+    sw   $t3, 0($t5)
+    addi $t5, $t5, 256
+    sw   $t3, 0($t5)
+    addi $t5, $t5, 256        # +1 linha
+    sw   $t3, 0($t5)
+    addi $t5, $t5, 256        # +1 linha
+    sw   $t3, 0($t5)
+    addi $t5, $t5, 256        # +1 linha
+    sw   $t3, 0($t5)
+    
+    addi $t6, $t4, 512
+    
+    addi $t6, $t6, 4
+    sw   $t3, 0($t6)
+    addi $t6, $t6, 4
+    sw   $t3, 0($t6)
+    addi $t6, $t6, 4
+    sw   $t3, 0($t6)
+    addi $t6, $t6, 4
+    sw   $t3, 0($t6)
+    addi $t6, $t6, 4
+    sw   $t3, 0($t6)
+    
+    # 4 pixels à direita, UMA LINHA ACIMA do pixel inicial
+    addi $t7, $t4, 512        # endereço do pixel inicial
+    addi $t7, $t7, -256       # sobe 1 linha
+
+    addi $t7, $t7, 4          # +1 coluna
+    sw   $t3, 0($t7)
+    addi $t7, $t7, 4          # +1 coluna
+    sw   $t3, 0($t7)
+    addi $t7, $t7, 4          # +1 coluna
+    sw   $t3, 0($t7)
+    addi $t7, $t7, 4          # +1 coluna
+    sw   $t3, 0($t7)
+    
+# 4 pixels abaixo do quarto pixel horizontal, indo para direita
+    # quarto pixel = pixel inicial + 3 colunas à direita (3*4=12)
+    addi $t4, $t4, 512        # vai para linha do pixel inicial
+    addi $t4, $t4, 12         # avança 3 colunas (pixel inicial já conta como 1)
+    addi $t4, $t4, 256        # desce uma linha
+
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    
+ # 3 pixels a partir do segundo pixel dessa linha (para direita)
+    # segundo pixel = primeiro da linha acima + 4 bytes + 256 (uma linha abaixo)
+    addi $t4, $t4, -12        # volta ao primeiro pixel desta linha
+    addi $t4, $t4, 4          # avança para o segundo pixel
+    addi $t4, $t4, 256        # desce uma linha
+
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    
+    addi $t4, $t4, -12
+    addi $t4, $t4, 256
+    
+    
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    addi $t4, $t4, 4
+    sw   $t3, 0($t4)
+    # Encerrar
+    li   $v0, 10
+    syscall
