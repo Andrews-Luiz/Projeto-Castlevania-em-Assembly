@@ -1,32 +1,31 @@
 # cenario1.asm - Desenha o cenario 1: Entrada do Castelo. Contem os loops de renderizacao do ceu, arvores, parede e chao.
 
--
 # .word significa que voce esta reservando 4 bytes de memoria para guardar 32 bits
-.data # declara cores e variáveis do programa, cores, sprites e variáveis por exemplo
+.data # declara cores e variï¿½veis do programa, cores, sprites e variï¿½veis por exemplo
    base_address: .word 0x10010000 
    cor_ceu:      .word 0x00001A57
    cor_terra:    .word 0x008B3A00
-.text # seção onde fica o código executável, ou seja, as intruções que o processador vai executar
+.text # seï¿½ï¿½o onde fica o cï¿½digo executï¿½vel, ou seja, as intruï¿½ï¿½es que o processador vai executar
 .globl main
 
 main:
-     lw $t0, base_address #lw significa load word, ele carrega um valor da memoria para o registrador, # $t0 = endereço base do bitmap
-     lw $t1, cor_ceu # cor do céu
-     li $t2, 1920    # 30 linhas × 64 pixels = 1920 pixels
-     lw $t3, cor_terra #t3 = cor do chão
+     lw $t0, base_address #lw significa load word, ele carrega um valor da memoria para o registrador, # $t0 = endereï¿½o base do bitmap
+     lw $t1, cor_ceu # cor do cï¿½u
+     li $t2, 1920    # 30 linhas ï¿½ 64 pixels = 1920 pixels
+     lw $t3, cor_terra #t3 = cor do chï¿½o
      
 loop_ceu:
-     sw $t1, 0($t0)          # escreve a cor no endereço atual
-     addiu $t0, $t0, 4       # avança 4 bytes pro próximo pixel
+     sw $t1, 0($t0)          # escreve a cor no endereï¿½o atual
+     addiu $t0, $t0, 4       # avanï¿½a 4 bytes pro prï¿½ximo pixel
      addiu $t2, $t2, -1      # decrementa o contador
      bnez $t2, loop_ceu      # se contador != 0, repete
      
-     li $t0, 0x10011E00      # endereço direto do início do chão
+     li $t0, 0x10011E00      # endereï¿½o direto do inï¿½cio do chï¿½o
      li $t2, 128             # 2 linhas = 64 pixels x 2 = 128 pixels
      
 loop_terra:
-     sw $t3, 0($t0)          # escreve a cor no endereço atual
-     addiu $t0, $t0, 4       # avança 4 bytes pro próximo pixel
+     sw $t3, 0($t0)          # escreve a cor no endereï¿½o atual
+     addiu $t0, $t0, 4       # avanï¿½a 4 bytes pro prï¿½ximo pixel
      addiu $t2, $t2, -1      # decrementa o contador
      bnez $t2, loop_terra      # se contador != 0, repete
      
