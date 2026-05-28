@@ -18,7 +18,8 @@ main:
     sll  $t1, $t1, 2        # * 4 = 92 (offset em bytes)
 
     li   $t3, 0x005D4B3D    # cor marrom
-    li   $s0, 0x00F1B574    # cor Dourado
+    li   $s0, 0x00D2B48C    # cor Bege
+    li   $s1, 0x00B8860B    # cor Dourado
 
     add  $t4, $t0, $t1      # $t4 = endereço base do sprite
 
@@ -135,9 +136,42 @@ main:
     sw   $t3, 0($t4)
     addi $t4, $t4, -4       # -1 coluna (esquerda)
     sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
+    addi $t4, $t4, -4       # -1 coluna (esquerda) Dourado
+    sw   $s1, 0($t4)
+    addi $t4, $t4, -256
+    addi $t4, $t4, -4       # -1 coluna (esquerda) Dourado
     sw   $s0, 0($t4)
+    addi $t4, $t4, 256
+    sw   $s0, 0($t4)
+    addi $t4, $t4, -252
+    sw   $s0, 0($t4)
+    addi $t4, $t4, -256
+    addi $t4, $t4, -256
+    sw   $s0, 0($t4)
+    addi $t4,$t4, 256
+    sw   $s0, 0($t4)
+    addi $t4,$t4, -260
+    sw   $s0, 0($t4)
+    addi $t4,$t4, 256
+    sw   $s1, 0($t4)
+    addi $t4, $t4, 8    # pula 1 pixel
+    sw   $s1, 0($t4)
+    addi $t4, $t4, 256
+    sw   $s1, 0($t4)
+    # =============================================
+    # FIM DA CABEÇA
+    # =============================================
+    # salva posição atual antes de pular
+    move $s2, $t4           # $s2 guarda último pixel da cabeça
 
+    # =============================================
+    # INÍCIO DO CORPO
+    # pula 1 pixel para baixo
+    # =============================================
+    addi $t4, $t4, 512      # pula 1 linha
+    sw   $s0, 0($t4)        # primeiro pixel do corpo
+    
+    
     # =============================================
     # SEGUNDO SPRITE — pixel separado
     # offset calculado: linha=5, coluna=25
