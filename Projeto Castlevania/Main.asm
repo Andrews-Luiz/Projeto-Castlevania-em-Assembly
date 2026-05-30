@@ -7,14 +7,16 @@
     cor_arvore:   .word 0x00146B00
     cor_parede:   .word 0x00A0522D
     cor_sombra:   .word 0x00000000
+    cor_pedra:    .word 0x00808080
 
 .text
 .globl main
 
 main:
-    jal desenha_cenario1    # chama o cenario 1
+    jal desenha_cenario2    # chama o cenario 1 ou 2(só mudar o número dps de cenário)
 
     li $v0, 10
     syscall
 
 .include "Cenario1.asm"
+.include "Cenario2.asm"
