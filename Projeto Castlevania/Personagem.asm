@@ -1,159 +1,572 @@
-# Personagem.asm - Controla o personagem Richter Belmont. Gerencia o sprite, movimentacao, pulo e combate com o chicote..data
-.data
-    # Base do Bitmap Display
-    base: .word 0x10010000
-
 .text
-main:
-    # =============================================
-    # CONFIGURAÇÃO INICIAL
-    # Carregar endereço base e calcular offset
-    # =============================================
-    lui  $t0, 0x1001        # $t0 = 0x10010000
 
-    # offset: (linha=3 * largura=5 + coluna=8) * 4
-    li   $t1, 3             # linha
-    li   $t2, 5             # largura (pixels)
-    mul  $t1, $t1, $t2      # linha * largura = 15
-    addi $t1, $t1, 8        # + coluna = 23
-    sll  $t1, $t1, 2        # * 4 = 92 (offset em bytes)
+.globl desenhar_simon_parado
+desenhar_simon_parado:
+    li $t0, 0x10010000
 
-    li   $t3, 0x005D4B3D    # cor marrom
-    li   $s0, 0x00F1B574    # cor Dourado
+    # --- LINHA 0 ---
+    add $v0, $a1, 0
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
 
-    add  $t4, $t0, $t1      # $t4 = endereço base do sprite
+    # --- LINHA 1 ---
+    add $v0, $a1, 1
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
 
-    # =============================================
-    # COLUNA VERTICAL — 6 pixels para baixo
-    # a partir do pixel inicial (2 linhas abaixo da base)
-    # =============================================
-    addi $t5, $t4, 512      # pixel inicial (2 linhas abaixo)
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
+    # --- LINHA 2 ---
+    add $v0, $a1, 2
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
 
-    # =============================================
-    # LINHA HORIZONTAL — 5 pixels para a direita
-    # a partir do pixel inicial
-    # =============================================
-    addi $t6, $t4, 512      # volta ao pixel inicial
+    # --- LINHA 3 ---
+    add $v0, $a1, 3
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
 
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
+    # --- LINHA 4 ---
+    add $v0, $a1, 4
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
 
-    # =============================================
-    # LINHA HORIZONTAL ACIMA — 4 pixels para a direita
-    # 1 linha acima do pixel inicial
-    # =============================================
-    addi $t7, $t4, 512      # pixel inicial
-    addi $t7, $t7, -256     # sobe 1 linha
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
+    # --- LINHA 5 ---
+    add $v0, $a1, 5
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
 
-    # =============================================
-    # LINHA ABAIXO DA HORIZONTAL — 4 pixels para a direita
-    # a partir do 4º pixel da horizontal, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, 512      # pixel inicial
-    addi $t4, $t4, 12       # avança 3 colunas (4º pixel)
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
+    # --- LINHA 6 ---
+    add $v0, $a1, 6
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x000000FC
+    sw $t1, 8($v0)
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
 
-    # =============================================
-    # LINHA SEGUINTE — 3 pixels para a direita
-    # a partir do 2º pixel da linha anterior, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, -12      # volta ao 1º pixel da linha anterior
-    addi $t4, $t4, 4        # avança para o 2º pixel
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
+    # --- LINHA 7 ---
+    add $v0, $a1, 7
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x00747474
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
 
-    # =============================================
-    # LINHA SEGUINTE — 6 pixels para a direita
-    # 1 linha abaixo, a partir de uma posição ajustada
-    # =============================================
-    addi $t4, $t4, -12
-    addi $t4, $t4, 256
+    # --- LINHA 8 ---
+    add $v0, $a1, 8
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x000000FC
+    sw $t1, 12($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
 
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
+    # --- LINHA 9 ---
+    add $v0, $a1, 9
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
 
-    # =============================================
-    # LINHA SEGUINTE — 3 pixels para a esquerda
-    # a partir do 2º pixel, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, -12      # volta ao 2º pixel
-    addi $t4, $t4, -4
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $s0, 0($t4)
+    # --- LINHA 10 ---
+    add $v0, $a1, 10
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00747474
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
 
-    # =============================================
-    # SEGUNDO SPRITE — pixel separado
-    # offset calculado: linha=5, coluna=25
-    # (5 * 64 + 25) * 4 = 1380
-    # =============================================
-    li   $t1, 1380          # offset calculado
-    li   $t3, 0x005D4B3D
-    add  $t4, $t0, $t1
-    addi $t5, $t4, 512      # pixel inicial
-    sw   $t3, 0($t5)
-    addi $t7, $t5, -4       # 1 pixel à esquerda
-    sw   $t3, 0($t7)
+    # --- LINHA 11 ---
+    add $v0, $a1, 11
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
 
-    # =============================================
-    # ENCERRAR
-    # =============================================
-    li   $v0, 10
-    syscall
+    # --- LINHA 12 ---
+    add $v0, $a1, 12
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+
+    # --- LINHA 13 ---
+    add $v0, $a1, 13
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    jr $ra
+
+.globl desenhar_simon_andar1
+desenhar_simon_andar1:
+    li $t0, 0x10010000
+
+    # --- LINHA 0 ---
+    add $v0, $a1, 0
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    # --- LINHA 1 ---
+    add $v0, $a1, 1
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+
+    # --- LINHA 2 ---
+    add $v0, $a1, 2
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+    li $t1, 0x00000000
+    sw $t1, 28($v0)
+
+    # --- LINHA 3 ---
+    add $v0, $a1, 3
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 24($v0)
+
+    # --- LINHA 4 ---
+    add $v0, $a1, 4
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 24($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+
+    # --- LINHA 5 ---
+    add $v0, $a1, 5
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+    li $t1, 0x00000000
+    sw $t1, 28($v0)
+    li $t1, 0x00747474
+    sw $t1, 32($v0)
+
+    # --- LINHA 6 ---
+    add $v0, $a1, 6
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+    li $t1, 0x00747474
+    sw $t1, 32($v0)
+
+    # --- LINHA 7 ---
+    add $v0, $a1, 7
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+
+    # --- LINHA 8 ---
+    add $v0, $a1, 8
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00747474
+    sw $t1, 20($v0)
+    li $t1, 0x000000FC
+    sw $t1, 24($v0)
+
+    # --- LINHA 9 ---
+    add $v0, $a1, 9
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x000000FC
+    sw $t1, 24($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 28($v0)
+
+    # --- LINHA 10 ---
+    add $v0, $a1, 10
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+    li $t1, 0x00000000
+    sw $t1, 32($v0)
+
+    # --- LINHA 11 ---
+    add $v0, $a1, 11
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+    li $t1, 0x00000000
+    sw $t1, 32($v0)
+
+    # --- LINHA 12 ---
+    add $v0, $a1, 12
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+    li $t1, 0x00747474
+    sw $t1, 32($v0)
+
+    # --- LINHA 13 ---
+    add $v0, $a1, 13
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    jr $ra
+
+.globl desenhar_simon_andar2
+desenhar_simon_andar2:
+    li $t0, 0x10010000
+
+    # --- LINHA 0 ---
+    add $v0, $a1, 0
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    # --- LINHA 1 ---
+    add $v0, $a1, 1
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+
+    # --- LINHA 2 ---
+    add $v0, $a1, 2
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00747474
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+
+    # --- LINHA 3 ---
+    add $v0, $a1, 3
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 20($v0)
+
+    # --- LINHA 4 ---
+    add $v0, $a1, 4
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+
+    # --- LINHA 5 ---
+    add $v0, $a1, 5
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x000000FC
+    sw $t1, 16($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+    li $t1, 0x00000000
+    sw $t1, 28($v0)
+
+    # --- LINHA 6 ---
+    add $v0, $a1, 6
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00F8B878
+    sw $t1, 12($v0)
+    li $t1, 0x00000000
+    sw $t1, 16($v0)
+    li $t1, 0x00747474
+    sw $t1, 20($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+    li $t1, 0x00747474
+    sw $t1, 28($v0)
+
+    # --- LINHA 7 ---
+    add $v0, $a1, 7
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x000000FC
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+
+    # --- LINHA 8 ---
+    add $v0, $a1, 8
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00000000
+    sw $t1, 8($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 24($v0)
+
+    # --- LINHA 9 ---
+    add $v0, $a1, 9
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 12($v0)
+    li $t1, 0x00F8B878
+    sw $t1, 16($v0)
+    li $t1, 0x00000000
+    sw $t1, 20($v0)
+    li $t1, 0x00000000
+    sw $t1, 24($v0)
+
+    # --- LINHA 10 ---
+    add $v0, $a1, 10
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 8($v0)
+    li $t1, 0x00000000
+    sw $t1, 12($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+
+    # --- LINHA 11 ---
+    add $v0, $a1, 11
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+    li $t1, 0x00747474
+    sw $t1, 8($v0)
+    li $t1, 0x00747474
+    sw $t1, 24($v0)
+    li $t1, 0x00000000
+    sw $t1, 28($v0)
+
+    # --- LINHA 12 ---
+    add $v0, $a1, 12
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    # --- LINHA 13 ---
+    add $v0, $a1, 13
+    sll $v0, $v0, 6
+    add $v0, $v0, $a0
+    sll $v0, $v0, 2
+    add $v0, $v0, $t0
+
+    jr $ra
+
