@@ -1,192 +1,172 @@
 .data
-    # Base do Bitmap Display
-    base: .word 0x10010000
-
 .text
 main:
-    # =============================================
-    # CONFIGURAÇÃO INICIAL
-    # Carregar endereço base e calcular offset
-    # =============================================
-    lui  $t0, 0x1001        # $t0 = 0x10010000
+    # Simon Belmont - Castlevania (sprite menor)
+    # Bitmap Display: Unit 8x8, Display 512x256, Base 0x10010000
+    # Sprite: 10x18 pixels logicos, centralizado
 
-    # offset: (linha=3 * largura=5 + coluna=8) * 4
-    li   $t1, 3             # linha
-    li   $t2, 5             # largura (pixels)
-    mul  $t1, $t1, $t2      # linha * largura = 15
-    addi $t1, $t1, 8        # + coluna = 23
-    sll  $t1, $t1, 2        # * 4 = 92 (offset em bytes)
+    li $t0, 0x10010000   # base address
 
-    li   $t3, 0x005D4B3D    # cor marrom
-    li   $s0, 0x00D2B48C    # cor Bege
-    li   $s1, 0x00B8860B    # cor Dourado
+    li $t1, 0x8C341D # Cabe�a
+    sw $t1, 1920($t0)
+    sw $t1, 1924($t0)
+    sw $t1, 1928($t0)
+    sw $t1, 2172($t0)
+    sw $t1, 2176($t0)
+    li $t1, 0xFFED91
+    sw $t1, 2180($t0)
+    sw $t1, 2184($t0)
+    li $t1, 0x8C341D
+    sw $t1, 2428($t0)
+    sw $t1, 2432($t0)
+    li $t1, 0xFFED91
+    sw $t1, 2436($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 2440($t0)
+    li $t1, 0x8C341D
+    sw $t1, 2672($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 2676($t0)
+    sw $t1, 2680($t0)
+    li $t1, 0x8C341D
+    sw $t1, 2684($t0)
+    sw $t1, 2688($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 2692($t0)
+    li $t1, 0xFFED91
+    sw $t1, 2696($t0)
+    li $t1, 0x8C341D
+    sw $t1, 2928($t0)
+    sw $t1, 2932($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 2936($t0)
+    sw $t1, 2940($t0)
+    sw $t1, 2944($t0)
+    li $t1, 0xFFED91
+    sw $t1, 2948($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3180($t0)
+    li $t1, 0xFFED91
+    sw $t1, 3184($t0)
+    li $t1, 0x8C341D # Come�o do corpo
+    sw $t1, 3188($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 3192($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3196($t0)
+    sw $t1, 3200($t0)
+    sw $t1, 3204($t0)
+    sw $t1, 3208($t0)
+    sw $t1, 3436($t0)
+    sw $t1, 3440($t0)
+    sw $t1, 3444($t0)
+    sw $t1, 3448($t0)
+    sw $t1, 3452($t0)
+    sw $t1, 3456($t0)
+    li $t1, 0xFFED91
+    sw $t1, 3460($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3464($t0)
+    li $t1, 0xFFED91
+    sw $t1, 3468($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3472($t0)
+    sw $t1, 3696($t0)
+    sw $t1, 3700($t0)
+    sw $t1, 3704($t0)
+    sw $t1, 3708($t0)
+    sw $t1, 3712($t0)
+    sw $t1, 3716($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 3720($t0)
+    li $t1, 0xFFED91
+    sw $t1, 3724($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3728($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 3956($t0)
+    li $t1, 0x8C341D
+    sw $t1, 3960($t0)
+    sw $t1, 3964($t0)
+    sw $t1, 3968($t0)
+    sw $t1, 3972($t0)
+    sw $t1, 3976($t0)
+    sw $t1, 3980($t0)
+    sw $t1, 4208($t0)
+    sw $t1, 4212($t0)
+    sw $t1, 4216($t0)
+    sw $t1, 4220($t0)
+    sw $t1, 4224($t0)
+    sw $t1, 4464($t0)
+    sw $t1, 4468($t0)
+    sw $t1, 4472($t0)
+    sw $t1, 4476($t0)
+    sw $t1, 4480($t0)
+    sw $t1, 4724($t0)
+    li $t1, 0xFFED91
+    sw $t1, 4728($t0)
+    li $t1, 0x8C341D
+    sw $t1, 4732($t0)
+    sw $t1, 4736($t0)
+    li $t1, 0xFFED91 # Come�o das pernas
+    sw $t1, 4740($t0)
+    li $t1, 0x8C341D
+    sw $t1, 4744($t0)
+    sw $t1, 4980($t0)
+    li $t1, 0xFFED91
+    sw $t1, 4984($t0)
+    li $t1, 0x8C341D
+    sw $t1, 4988($t0)
+    sw $t1, 4992($t0)
+    li $t1, 0xFFED91
+    sw $t1, 4996($t0)
+    sw $t1, 5000($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5236($t0)
+    li $t1, 0xFFED91
+    sw $t1, 5240($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5252($t0)
+    sw $t1, 5256($t0)
+    sw $t1, 5260($t0)
+    sw $t1, 5488($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 5492($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5496($t0)
+    sw $t1, 5508($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 5512($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5516($t0)
+    sw $t1, 5740($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 5744($t0)
+    sw $t1, 5748($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5764($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 5768($t0)
+    li $t1, 0x8C341D
+    sw $t1, 5772($t0)
+    sw $t1, 5996($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 6000($t0)
+    li $t1, 0x8C341D
+    sw $t1, 6004($t0)
+    sw $t1, 6024($t0)
+    sw $t1, 6028($t0)
+    sw $t1, 6252($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 6256($t0)
+    li $t1, 0x8C341D
+    sw $t1, 6260($t0)
+    sw $t1, 6276($t0)
+    li $t1, 0xFFA42E
+    sw $t1, 6280($t0)
+    sw $t1, 6284($t0)
+    li $t1, 0x8C341D
+    sw $t1, 6288($t0)
 
-    add  $t4, $t0, $t1      # $t4 = endereço base do sprite
-
-    # =============================================
-    # COLUNA VERTICAL — 6 pixels para baixo
-    # a partir do pixel inicial (2 linhas abaixo da base)
-    # =============================================
-    addi $t5, $t4, 512      # pixel inicial (2 linhas abaixo)
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-    addi $t5, $t5, 256      # +1 linha
-    sw   $t3, 0($t5)
-
-    # =============================================
-    # LINHA HORIZONTAL — 5 pixels para a direita
-    # a partir do pixel inicial
-    # =============================================
-    addi $t6, $t4, 512      # volta ao pixel inicial
-
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-    addi $t6, $t6, 4        # +1 coluna direita
-    sw   $t3, 0($t6)
-
-    # =============================================
-    # LINHA HORIZONTAL ACIMA — 4 pixels para a direita
-    # 1 linha acima do pixel inicial
-    # =============================================
-    addi $t7, $t4, 512      # pixel inicial
-    addi $t7, $t7, -256     # sobe 1 linha
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-    addi $t7, $t7, 4        # +1 coluna direita
-    sw   $t3, 0($t7)
-
-    # =============================================
-    # LINHA ABAIXO DA HORIZONTAL — 4 pixels para a direita
-    # a partir do 4º pixel da horizontal, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, 512      # pixel inicial
-    addi $t4, $t4, 12       # avança 3 colunas (4º pixel)
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-
-    # =============================================
-    # LINHA SEGUINTE — 3 pixels para a direita
-    # a partir do 2º pixel da linha anterior, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, -12      # volta ao 1º pixel da linha anterior
-    addi $t4, $t4, 4        # avança para o 2º pixel
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-
-    # =============================================
-    # LINHA SEGUINTE — 6 pixels para a direita
-    # 1 linha abaixo, a partir de uma posição ajustada
-    # =============================================
-    addi $t4, $t4, -12
-    addi $t4, $t4, 256
-
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-    addi $t4, $t4, 4
-    sw   $t3, 0($t4)
-
-    # =============================================
-    # LINHA SEGUINTE — 3 pixels para a esquerda
-    # a partir do 2º pixel, 1 linha abaixo
-    # =============================================
-    addi $t4, $t4, -12      # volta ao 2º pixel
-    addi $t4, $t4, -4
-    addi $t4, $t4, 256      # desce 1 linha
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda)
-    sw   $t3, 0($t4)
-    addi $t4, $t4, -4       # -1 coluna (esquerda) Dourado
-    sw   $s1, 0($t4)
-    addi $t4, $t4, -256
-    addi $t4, $t4, -4       # -1 coluna (esquerda) Dourado
-    sw   $s0, 0($t4)
-    addi $t4, $t4, 256
-    sw   $s0, 0($t4)
-    addi $t4, $t4, -252
-    sw   $s0, 0($t4)
-    addi $t4, $t4, -256
-    addi $t4, $t4, -256
-    sw   $s0, 0($t4)
-    addi $t4,$t4, 256
-    sw   $s0, 0($t4)
-    addi $t4,$t4, -260
-    sw   $s0, 0($t4)
-    addi $t4,$t4, 256
-    sw   $s1, 0($t4)
-    addi $t4, $t4, 8    # pula 1 pixel
-    sw   $s1, 0($t4)
-    addi $t4, $t4, 256
-    sw   $s1, 0($t4)
-    # =============================================
-    # FIM DA CABEÇA
-    # =============================================
-    # salva posição atual antes de pular
-    move $s2, $t4           # $s2 guarda último pixel da cabeça
-
-    # =============================================
-    # INÍCIO DO CORPO
-    # pula 1 pixel para baixo
-    # =============================================
-    addi $t4, $t4, 512      # pula 1 linha
-    sw   $s0, 0($t4)        # primeiro pixel do corpo
-    
-    
-    # =============================================
-    # SEGUNDO SPRITE — pixel separado
-    # offset calculado: linha=5, coluna=25
-    # (5 * 64 + 25) * 4 = 1380
-    # =============================================
-    li   $t1, 1380          # offset calculado
-    li   $t3, 0x005D4B3D
-    add  $t4, $t0, $t1
-    addi $t5, $t4, 512      # pixel inicial
-    sw   $t3, 0($t5)
-    addi $t7, $t5, -4       # 1 pixel à esquerda
-    sw   $t3, 0($t7)
-
-    # =============================================
-    # ENCERRAR
-    # =============================================
-    li   $v0, 10
+    li $v0, 10
     syscall
