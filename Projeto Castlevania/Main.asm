@@ -13,10 +13,15 @@
 .globl main
 
 main:
-    jal desenha_cenario2    # chama o cenario 1 ou 2(só mudar o número dps de cenário)
-
+    jal desenha_cenario1       # Desenha o fundo
+    
+    li $a0, 15                 # MantÃ©m o X onde quiser
+    li $a1, 15                 # Subimos o Y de 18 para 15 para compensar a nova altura de 14
+    jal desenhar_simon_parado   # Teste primeiro o parado, depois mude para os de andar
+    
     li $v0, 10
     syscall
-
+    
 .include "Cenario1.asm"
 .include "Cenario2.asm"
+.include "Personagem.asm"
