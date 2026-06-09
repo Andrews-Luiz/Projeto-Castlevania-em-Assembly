@@ -5237,7 +5237,7 @@ D1441:
     li $t0, 0x10011DFC
     li $t1, 0x053D56
     sw $t1, 0($t0)
-    li $t0, 0x10011E00 # Início da região: chão de tijolos laranjos (linha 30, col 0)
+    li $t0, 0x10011E00 # Início da região: chão de tijolos laranjas (linha 30, col 0)
     li $t1, 0xB25E20
     sw $t1, 0($t0)
     li $t0, 0x10011E04
@@ -5381,7 +5381,7 @@ D1441:
     li $t0, 0x10011EBC
     li $t1, 0x0C0000
     sw $t1, 0($t0)
-    li $t0, 0x10011EC0 # chão de tijolos laranjos — linha 30, col 48
+    li $t0, 0x10011EC0 # chão de tijolos laranjas — linha 30, col 48
     li $t1, 0xAB3F00
     sw $t1, 0($t0)
     li $t0, 0x10011EC4
@@ -5618,7 +5618,7 @@ D1441:
     li $t0, 0x10011FF8
     li $t1, 0xB73F03
     sw $t1, 0($t0)
-    li $t0, 0x10011FFC # chão de tijolos laranjos — linha 31, col 63
+    li $t0, 0x10011FFC # chão de tijolos laranjas — linha 31, col 63
     li $t1, 0x6B7979
     sw $t1, 0($t0)
 
