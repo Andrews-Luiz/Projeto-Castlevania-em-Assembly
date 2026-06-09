@@ -3,14 +3,14 @@
 .text
 
 desenha_cenario2:
-    li $t0, 0x10010000
+    li $t0, 0x10010000 # Início da região: parede de pedra cinza do castelo (linha 0, col 0, 6 pixels)
     li $t1, 0xBABABA
     li $t2, 6
-C0:
+D0:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C0
+    bnez $t2, D0
     li $t0, 0x10010018
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
@@ -62,27 +62,27 @@ C0:
     li $t0, 0x10010058
     li $t1, 0xBABABA
     li $t2, 3
-C17:
+D17:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C17
+    bnez $t2, D17
     li $t0, 0x10010064
     li $t1, 0xBBBBBB
     li $t2, 7
-C18:
+D18:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C18
+    bnez $t2, D18
     li $t0, 0x10010080
     li $t1, 0xBABABA
     li $t2, 3
-C19:
+D19:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C19
+    bnez $t2, D19
     li $t0, 0x1001008C
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -131,27 +131,27 @@ C19:
     li $t0, 0x100100C8
     li $t1, 0xBABABA
     li $t2, 2
-C35:
+D35:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C35
+    bnez $t2, D35
     li $t0, 0x100100D0
     li $t1, 0xBBBBBB
     li $t2, 7
-C36:
+D36:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C36
+    bnez $t2, D36
     li $t0, 0x100100EC
     li $t1, 0xBABABA
     li $t2, 12
-C37:
+D37:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C37
+    bnez $t2, D37
     li $t0, 0x1001011C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -197,38 +197,38 @@ C37:
     li $t0, 0x10010154
     li $t1, 0xBABABA
     li $t2, 2
-C52:
+D52:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C52
+    bnez $t2, D52
     li $t0, 0x1001015C
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010160
     li $t1, 0xBABABA
     li $t2, 3
-C54:
+D54:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C54
+    bnez $t2, D54
     li $t0, 0x1001016C
     li $t1, 0xBBBBBB
     li $t2, 2
-C55:
+D55:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C55
+    bnez $t2, D55
     li $t0, 0x10010174
     li $t1, 0xBABABA
     li $t2, 6
-C56:
+D56:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C56
+    bnez $t2, D56
     li $t0, 0x1001018C
     li $t1, 0xC2C2C2
     sw $t1, 0($t0)
@@ -241,11 +241,11 @@ C56:
     li $t0, 0x10010198
     li $t1, 0xB8B8B8
     li $t2, 2
-C60:
+D60:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C60
+    bnez $t2, D60
     li $t0, 0x100101A0
     li $t1, 0x737373
     sw $t1, 0($t0)
@@ -279,42 +279,42 @@ C60:
     li $t0, 0x100101C8
     li $t1, 0xBABABA
     li $t2, 2
-C71:
+D71:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C71
+    bnez $t2, D71
     li $t0, 0x100101D0
     li $t1, 0xBBBBBB
     li $t2, 3
-C72:
+D72:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C72
+    bnez $t2, D72
     li $t0, 0x100101DC
     li $t1, 0xBABABA
     li $t2, 8
-C73:
+D73:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C73
+    bnez $t2, D73
     li $t0, 0x100101FC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010200
     li $t1, 0xBABABA
     li $t2, 6
-C75:
+D75:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C75
+    bnez $t2, D75
     li $t0, 0x10010218
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x1001021C
+    li $t0, 0x1001021C # parede de pedra cinza do castelo — linha 2, col 7
     li $t1, 0x111111
     sw $t1, 0($t0)
     li $t0, 0x10010220
@@ -368,22 +368,22 @@ C75:
     li $t0, 0x10010260
     li $t1, 0xBABABA
     li $t2, 3
-C94:
+D94:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C94
+    bnez $t2, D94
     li $t0, 0x1001026C
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
     li $t0, 0x10010270
     li $t1, 0xBABABA
     li $t2, 7
-C96:
+D96:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C96
+    bnez $t2, D96
     li $t0, 0x1001028C
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -405,11 +405,11 @@ C96:
     li $t0, 0x100102A4
     li $t1, 0x000000
     li $t2, 2
-C103:
+D103:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C103
+    bnez $t2, D103
     li $t0, 0x100102AC
     li $t1, 0xFF658D
     sw $t1, 0($t0)
@@ -434,33 +434,33 @@ C103:
     li $t0, 0x100102C8
     li $t1, 0xBABABA
     li $t2, 5
-C111:
+D111:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C111
+    bnez $t2, D111
     li $t0, 0x100102DC
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
     li $t0, 0x100102E0
     li $t1, 0xBABABA
     li $t2, 7
-C113:
+D113:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C113
+    bnez $t2, D113
     li $t0, 0x100102FC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010300
     li $t1, 0xBABABA
     li $t2, 7
-C115:
+D115:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C115
+    bnez $t2, D115
     li $t0, 0x1001031C
     li $t1, 0x313131
     sw $t1, 0($t0)
@@ -506,33 +506,33 @@ C115:
     li $t0, 0x10010354
     li $t1, 0xBABABA
     li $t2, 2
-C130:
+D130:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C130
+    bnez $t2, D130
     li $t0, 0x1001035C
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010360
     li $t1, 0xBABABA
     li $t2, 8
-C132:
+D132:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C132
+    bnez $t2, D132
     li $t0, 0x10010380
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010384
     li $t1, 0xBABABA
     li $t2, 2
-C134:
+D134:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C134
+    bnez $t2, D134
     li $t0, 0x1001038C
     li $t1, 0xBDBDBD
     sw $t1, 0($t0)
@@ -587,30 +587,30 @@ C134:
     li $t0, 0x100103D0
     li $t1, 0xBABABA
     li $t2, 11
-C152:
+D152:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C152
+    bnez $t2, D152
     li $t0, 0x100103FC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x10010400
+    li $t0, 0x10010400 # parede de pedra cinza do castelo — linha 4, col 0, 3 pixels seguidos
     li $t1, 0xBABABA
     li $t2, 3
-C154:
+D154:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C154
+    bnez $t2, D154
     li $t0, 0x1001040C
     li $t1, 0xB9B9B9
     li $t2, 3
-C155:
+D155:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C155
+    bnez $t2, D155
     li $t0, 0x10010418
     li $t1, 0xB7B7B7
     sw $t1, 0($t0)
@@ -656,22 +656,22 @@ C155:
     li $t0, 0x10010450
     li $t1, 0xBABABA
     li $t2, 9
-C170:
+D170:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C170
+    bnez $t2, D170
     li $t0, 0x10010474
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
     li $t0, 0x10010478
     li $t1, 0xBABABA
     li $t2, 5
-C172:
+D172:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C172
+    bnez $t2, D172
     li $t0, 0x1001048C
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -717,11 +717,11 @@ C172:
     li $t0, 0x100104C4
     li $t1, 0xBABABA
     li $t2, 14
-C187:
+D187:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C187
+    bnez $t2, D187
     li $t0, 0x100104FC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -785,41 +785,41 @@ C187:
     li $t0, 0x1001054C
     li $t1, 0xB9B9B9
     li $t2, 2
-C208:
+D208:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C208
+    bnez $t2, D208
     li $t0, 0x10010554
     li $t1, 0xBABABA
     li $t2, 2
-C209:
+D209:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C209
+    bnez $t2, D209
     li $t0, 0x1001055C
     li $t1, 0xB7B7B7
     sw $t1, 0($t0)
     li $t0, 0x10010560
     li $t1, 0xBABABA
     li $t2, 5
-C211:
+D211:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C211
+    bnez $t2, D211
     li $t0, 0x10010574
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010578
     li $t1, 0xBABABA
     li $t2, 4
-C213:
+D213:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C213
+    bnez $t2, D213
     li $t0, 0x10010588
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -865,25 +865,25 @@ C213:
     li $t0, 0x100105C0
     li $t1, 0xBABABA
     li $t2, 4
-C228:
+D228:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C228
+    bnez $t2, D228
     li $t0, 0x100105D0
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
     li $t0, 0x100105D4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x100105D8
+    li $t0, 0x100105D8 # parede de pedra cinza do castelo — linha 5, col 54, 7 pixels seguidos
     li $t1, 0xBABABA
     li $t2, 7
-C231:
+D231:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C231
+    bnez $t2, D231
     li $t0, 0x100105F4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -953,11 +953,11 @@ C231:
     li $t0, 0x1001064C
     li $t1, 0xB9B9B9
     li $t2, 2
-C254:
+D254:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C254
+    bnez $t2, D254
     li $t0, 0x10010654
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -979,11 +979,11 @@ C254:
     li $t0, 0x1001066C
     li $t1, 0xBABABA
     li $t2, 7
-C261:
+D261:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C261
+    bnez $t2, D261
     li $t0, 0x10010688
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -996,11 +996,11 @@ C261:
     li $t0, 0x10010694
     li $t1, 0xBABABA
     li $t2, 2
-C265:
+D265:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C265
+    bnez $t2, D265
     li $t0, 0x1001069C
     li $t1, 0xBFBFBF
     sw $t1, 0($t0)
@@ -1031,11 +1031,11 @@ C265:
     li $t0, 0x100106C0
     li $t1, 0xBABABA
     li $t2, 3
-C275:
+D275:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C275
+    bnez $t2, D275
     li $t0, 0x100106CC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1048,11 +1048,11 @@ C275:
     li $t0, 0x100106D8
     li $t1, 0xBABABA
     li $t2, 9
-C279:
+D279:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C279
+    bnez $t2, D279
     li $t0, 0x100106FC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1113,19 +1113,19 @@ C279:
     li $t0, 0x10010748
     li $t1, 0xBABABA
     li $t2, 2
-C299:
+D299:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C299
+    bnez $t2, D299
     li $t0, 0x10010750
     li $t1, 0xB9B9B9
     li $t2, 2
-C300:
+D300:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C300
+    bnez $t2, D300
     li $t0, 0x10010758
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -1147,12 +1147,12 @@ C300:
     li $t0, 0x10010770
     li $t1, 0xBABABA
     li $t2, 6
-C307:
+D307:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C307
-    li $t0, 0x10010788
+    bnez $t2, D307
+    li $t0, 0x10010788 # parede de pedra cinza do castelo — linha 7, col 34
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x1001078C
@@ -1194,11 +1194,11 @@ C307:
     li $t0, 0x100107BC
     li $t1, 0xBABABA
     li $t2, 2
-C321:
+D321:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C321
+    bnez $t2, D321
     li $t0, 0x100107C4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1220,19 +1220,19 @@ C321:
     li $t0, 0x100107DC
     li $t1, 0xBABABA
     li $t2, 8
-C328:
+D328:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C328
+    bnez $t2, D328
     li $t0, 0x100107FC
     li $t1, 0xB9B9B9
     li $t2, 2
-C329:
+D329:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C329
+    bnez $t2, D329
     li $t0, 0x10010804
     li $t1, 0x000000
     sw $t1, 0($t0)
@@ -1287,11 +1287,11 @@ C329:
     li $t0, 0x10010848
     li $t1, 0xBABABA
     li $t2, 2
-C347:
+D347:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C347
+    bnez $t2, D347
     li $t0, 0x10010850
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1319,30 +1319,30 @@ C347:
     li $t0, 0x10010870
     li $t1, 0xBABABA
     li $t2, 5
-C356:
+D356:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C356
+    bnez $t2, D356
     li $t0, 0x10010884
     li $t1, 0xB9B9B9
     li $t2, 2
-C357:
+D357:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C357
+    bnez $t2, D357
     li $t0, 0x1001088C
     li $t1, 0xBDBDBD
     sw $t1, 0($t0)
     li $t0, 0x10010890
     li $t1, 0x6D6D6D
     li $t2, 2
-C359:
+D359:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C359
+    bnez $t2, D359
     li $t0, 0x10010898
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -1376,11 +1376,11 @@ C359:
     li $t0, 0x100108C0
     li $t1, 0xB9B9B9
     li $t2, 2
-C370:
+D370:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C370
+    bnez $t2, D370
     li $t0, 0x100108C8
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -1402,19 +1402,19 @@ C370:
     li $t0, 0x100108E0
     li $t1, 0xBABABA
     li $t2, 7
-C377:
+D377:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C377
+    bnez $t2, D377
     li $t0, 0x100108FC
     li $t1, 0xB9B9B9
     li $t2, 2
-C378:
+D378:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C378
+    bnez $t2, D378
     li $t0, 0x10010904
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -1433,7 +1433,7 @@ C378:
     li $t0, 0x10010918
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x1001091C
+    li $t0, 0x1001091C # parede de pedra cinza do castelo — linha 9, col 7
     li $t1, 0x333333
     sw $t1, 0($t0)
     li $t0, 0x10010920
@@ -1499,11 +1499,11 @@ C378:
     li $t0, 0x10010970
     li $t1, 0xBABABA
     li $t2, 2
-C406:
+D406:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C406
+    bnez $t2, D406
     li $t0, 0x10010978
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1516,11 +1516,11 @@ C406:
     li $t0, 0x10010984
     li $t1, 0xB9B9B9
     li $t2, 2
-C410:
+D410:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C410
+    bnez $t2, D410
     li $t0, 0x1001098C
     li $t1, 0xBDBDBD
     sw $t1, 0($t0)
@@ -1560,11 +1560,11 @@ C410:
     li $t0, 0x100109BC
     li $t1, 0xBABABA
     li $t2, 3
-C423:
+D423:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C423
+    bnez $t2, D423
     li $t0, 0x100109C8
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
@@ -1586,20 +1586,20 @@ C423:
     li $t0, 0x100109E0
     li $t1, 0xBABABA
     li $t2, 5
-C430:
+D430:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C430
+    bnez $t2, D430
     li $t0, 0x100109F4
     li $t1, 0xB9B9B9
     li $t2, 4
-C431:
+D431:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C431
-    li $t0, 0x10010A04
+    bnez $t2, D431
+    li $t0, 0x10010A04 # Início da região: parede com janelas e colunas (linha 10, col 1)
     li $t1, 0xBCBCBC
     sw $t1, 0($t0)
     li $t0, 0x10010A08
@@ -1608,11 +1608,11 @@ C431:
     li $t0, 0x10010A0C
     li $t1, 0xB9B9B9
     li $t2, 4
-C434:
+D434:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C434
+    bnez $t2, D434
     li $t0, 0x10010A1C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -1691,15 +1691,15 @@ C434:
     li $t0, 0x10010A80
     li $t1, 0xBABABA
     li $t2, 2
-C460:
+D460:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C460
+    bnez $t2, D460
     li $t0, 0x10010A88
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x10010A8C
+    li $t0, 0x10010A8C # parede com janelas e colunas — linha 10, col 35
     li $t1, 0xC0C0C0
     sw $t1, 0($t0)
     li $t0, 0x10010A90
@@ -1768,11 +1768,11 @@ C460:
     li $t0, 0x10010AE4
     li $t1, 0xBABABA
     li $t2, 5
-C484:
+D484:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C484
+    bnez $t2, D484
     li $t0, 0x10010AF8
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -1782,19 +1782,19 @@ C484:
     li $t0, 0x10010B00
     li $t1, 0xB9B9B9
     li $t2, 2
-C487:
+D487:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C487
+    bnez $t2, D487
     li $t0, 0x10010B08
     li $t1, 0xBABABA
     li $t2, 4
-C488:
+D488:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C488
+    bnez $t2, D488
     li $t0, 0x10010B18
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -1816,11 +1816,11 @@ C488:
     li $t0, 0x10010B30
     li $t1, 0x000000
     li $t2, 2
-C495:
+D495:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C495
+    bnez $t2, D495
     li $t0, 0x10010B38
     li $t1, 0xDC2402
     sw $t1, 0($t0)
@@ -1836,11 +1836,11 @@ C495:
     li $t0, 0x10010B48
     li $t1, 0xB9B9B9
     li $t2, 3
-C500:
+D500:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C500
+    bnez $t2, D500
     li $t0, 0x10010B54
     li $t1, 0x287E23
     sw $t1, 0($t0)
@@ -1868,19 +1868,19 @@ C500:
     li $t0, 0x10010B74
     li $t1, 0xBABABA
     li $t2, 4
-C509:
+D509:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C509
+    bnez $t2, D509
     li $t0, 0x10010B84
     li $t1, 0xB9B9B9
     li $t2, 2
-C510:
+D510:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C510
+    bnez $t2, D510
     li $t0, 0x10010B8C
     li $t1, 0xC2C2C2
     sw $t1, 0($t0)
@@ -1950,42 +1950,42 @@ C510:
     li $t0, 0x10010BE4
     li $t1, 0xBABABA
     li $t2, 5
-C533:
+D533:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C533
+    bnez $t2, D533
     li $t0, 0x10010BF8
     li $t1, 0xB9B9B9
     li $t2, 3
-C534:
+D534:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C534
+    bnez $t2, D534
     li $t0, 0x10010C04
     li $t1, 0xBABABA
     li $t2, 2
-C535:
+D535:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C535
+    bnez $t2, D535
     li $t0, 0x10010C0C
     li $t1, 0xB9B9B9
     li $t2, 2
-C536:
+D536:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C536
+    bnez $t2, D536
     li $t0, 0x10010C14
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10010C18
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x10010C1C
+    li $t0, 0x10010C1C # parede com janelas e colunas — linha 12, col 7
     li $t1, 0x020202
     sw $t1, 0($t0)
     li $t0, 0x10010C20
@@ -2018,11 +2018,11 @@ C536:
     li $t0, 0x10010C44
     li $t1, 0xB9B9B9
     li $t2, 4
-C549:
+D549:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C549
+    bnez $t2, D549
     li $t0, 0x10010C54
     li $t1, 0x267921
     sw $t1, 0($t0)
@@ -2053,19 +2053,19 @@ C549:
     li $t0, 0x10010C78
     li $t1, 0xBABABA
     li $t2, 2
-C559:
+D559:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C559
+    bnez $t2, D559
     li $t0, 0x10010C80
     li $t1, 0xB8B8B8
     li $t2, 2
-C560:
+D560:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C560
+    bnez $t2, D560
     li $t0, 0x10010C88
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2108,11 +2108,11 @@ C560:
     li $t0, 0x10010CBC
     li $t1, 0xB9B9B9
     li $t2, 2
-C574:
+D574:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C574
+    bnez $t2, D574
     li $t0, 0x10010CC4
     li $t1, 0xB9B7B8
     sw $t1, 0($t0)
@@ -2140,38 +2140,38 @@ C574:
     li $t0, 0x10010CE4
     li $t1, 0xBABABA
     li $t2, 4
-C583:
+D583:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C583
+    bnez $t2, D583
     li $t0, 0x10010CF4
     li $t1, 0xB9B9B9
     li $t2, 4
-C584:
+D584:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C584
+    bnez $t2, D584
     li $t0, 0x10010D04
     li $t1, 0xBABABA
     li $t2, 3
-C585:
+D585:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C585
+    bnez $t2, D585
     li $t0, 0x10010D10
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10010D14
     li $t1, 0xBABABA
     li $t2, 2
-C587:
+D587:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C587
+    bnez $t2, D587
     li $t0, 0x10010D1C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -2190,11 +2190,11 @@ C587:
     li $t0, 0x10010D30
     li $t1, 0x010101
     li $t2, 2
-C593:
+D593:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C593
+    bnez $t2, D593
     li $t0, 0x10010D38
     li $t1, 0x020401
     sw $t1, 0($t0)
@@ -2210,11 +2210,11 @@ C593:
     li $t0, 0x10010D48
     li $t1, 0xB9B9B9
     li $t2, 3
-C598:
+D598:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C598
+    bnez $t2, D598
     li $t0, 0x10010D54
     li $t1, 0x1B7D18
     sw $t1, 0($t0)
@@ -2242,11 +2242,11 @@ C598:
     li $t0, 0x10010D74
     li $t1, 0xBABABA
     li $t2, 5
-C607:
+D607:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C607
+    bnez $t2, D607
     li $t0, 0x10010D88
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2271,7 +2271,7 @@ C607:
     li $t0, 0x10010DA4
     li $t1, 0x040402
     sw $t1, 0($t0)
-    li $t0, 0x10010DA8
+    li $t0, 0x10010DA8 # parede com janelas e colunas — linha 13, col 42
     li $t1, 0x020001
     sw $t1, 0($t0)
     li $t0, 0x10010DAC
@@ -2289,11 +2289,11 @@ C607:
     li $t0, 0x10010DBC
     li $t1, 0xB9B9B9
     li $t2, 2
-C621:
+D621:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C621
+    bnez $t2, D621
     li $t0, 0x10010DC4
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -2321,41 +2321,41 @@ C621:
     li $t0, 0x10010DE4
     li $t1, 0xBABABA
     li $t2, 3
-C630:
+D630:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C630
+    bnez $t2, D630
     li $t0, 0x10010DF0
     li $t1, 0xB9B9B9
     li $t2, 3
-C631:
+D631:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C631
+    bnez $t2, D631
     li $t0, 0x10010DFC
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
     li $t0, 0x10010E00
     li $t1, 0xB9B9B9
     li $t2, 2
-C633:
+D633:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C633
+    bnez $t2, D633
     li $t0, 0x10010E08
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10010E0C
     li $t1, 0xB9B9B9
     li $t2, 3
-C635:
+D635:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C635
+    bnez $t2, D635
     li $t0, 0x10010E18
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -2395,11 +2395,11 @@ C635:
     li $t0, 0x10010E48
     li $t1, 0xB9B9B9
     li $t2, 3
-C648:
+D648:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C648
+    bnez $t2, D648
     li $t0, 0x10010E54
     li $t1, 0x278022
     sw $t1, 0($t0)
@@ -2427,11 +2427,11 @@ C648:
     li $t0, 0x10010E74
     li $t1, 0xBABABA
     li $t2, 5
-C657:
+D657:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C657
+    bnez $t2, D657
     li $t0, 0x10010E88
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2474,11 +2474,11 @@ C657:
     li $t0, 0x10010EBC
     li $t1, 0xBABABA
     li $t2, 2
-C671:
+D671:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C671
+    bnez $t2, D671
     li $t0, 0x10010EC4
     li $t1, 0xBBB9BA
     sw $t1, 0($t0)
@@ -2506,41 +2506,41 @@ C671:
     li $t0, 0x10010EE4
     li $t1, 0xBABABA
     li $t2, 2
-C680:
+D680:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C680
+    bnez $t2, D680
     li $t0, 0x10010EEC
     li $t1, 0xB9B9B9
     li $t2, 4
-C681:
+D681:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C681
+    bnez $t2, D681
     li $t0, 0x10010EFC
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
     li $t0, 0x10010F00
     li $t1, 0xB9B9B9
     li $t2, 2
-C683:
+D683:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C683
+    bnez $t2, D683
     li $t0, 0x10010F08
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10010F0C
     li $t1, 0xB9B9B9
     li $t2, 3
-C685:
+D685:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C685
+    bnez $t2, D685
     li $t0, 0x10010F18
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -2562,7 +2562,7 @@ C685:
     li $t0, 0x10010F30
     li $t1, 0x010000
     sw $t1, 0($t0)
-    li $t0, 0x10010F34
+    li $t0, 0x10010F34 # parede com janelas e colunas — linha 15, col 13
     li $t1, 0x000000
     sw $t1, 0($t0)
     li $t0, 0x10010F38
@@ -2577,22 +2577,22 @@ C685:
     li $t0, 0x10010F44
     li $t1, 0xB9B9B9
     li $t2, 4
-C697:
+D697:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C697
+    bnez $t2, D697
     li $t0, 0x10010F54
     li $t1, 0x268328
     sw $t1, 0($t0)
     li $t0, 0x10010F58
     li $t1, 0x211787
     li $t2, 2
-C699:
+D699:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C699
+    bnez $t2, D699
     li $t0, 0x10010F60
     li $t1, 0x16842B
     sw $t1, 0($t0)
@@ -2614,11 +2614,11 @@ C699:
     li $t0, 0x10010F78
     li $t1, 0xBABABA
     li $t2, 4
-C706:
+D706:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C706
+    bnez $t2, D706
     li $t0, 0x10010F88
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2661,11 +2661,11 @@ C706:
     li $t0, 0x10010FBC
     li $t1, 0xBABABA
     li $t2, 3
-C720:
+D720:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C720
+    bnez $t2, D720
     li $t0, 0x10010FC8
     li $t1, 0x087F07
     sw $t1, 0($t0)
@@ -2693,22 +2693,22 @@ C720:
     li $t0, 0x10010FE8
     li $t1, 0xB9B9B9
     li $t2, 5
-C729:
+D729:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C729
+    bnez $t2, D729
     li $t0, 0x10010FFC
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
-    li $t0, 0x10011000
+    li $t0, 0x10011000 # Início da região: janelas verdes e detalhes das colunas (linha 16, col 0, 2 pixels)
     li $t1, 0xB9B9B9
     li $t2, 2
-C731:
+D731:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C731
+    bnez $t2, D731
     li $t0, 0x10011008
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -2718,11 +2718,11 @@ C731:
     li $t0, 0x10011010
     li $t1, 0xBABABA
     li $t2, 3
-C734:
+D734:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C734
+    bnez $t2, D734
     li $t0, 0x1001101C
     li $t1, 0x6D6D6D
     sw $t1, 0($t0)
@@ -2750,19 +2750,19 @@ C734:
     li $t0, 0x1001103C
     li $t1, 0xB9B9B9
     li $t2, 2
-C743:
+D743:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C743
+    bnez $t2, D743
     li $t0, 0x10011044
     li $t1, 0xBABABA
     li $t2, 3
-C744:
+D744:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C744
+    bnez $t2, D744
     li $t0, 0x10011050
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2796,11 +2796,11 @@ C744:
     li $t0, 0x10011078
     li $t1, 0xBABABA
     li $t2, 4
-C755:
+D755:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C755
+    bnez $t2, D755
     li $t0, 0x10011088
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2840,15 +2840,15 @@ C755:
     li $t0, 0x100110B8
     li $t1, 0xBABABA
     li $t2, 3
-C768:
+D768:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C768
+    bnez $t2, D768
     li $t0, 0x100110C4
     li $t1, 0xBBB9BA
     sw $t1, 0($t0)
-    li $t0, 0x100110C8
+    li $t0, 0x100110C8 # janelas verdes e detalhes das colunas — linha 16, col 50
     li $t1, 0x002400
     sw $t1, 0($t0)
     li $t0, 0x100110CC
@@ -2881,30 +2881,30 @@ C768:
     li $t0, 0x100110F0
     li $t1, 0xB9B9B9
     li $t2, 5
-C780:
+D780:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C780
+    bnez $t2, D780
     li $t0, 0x10011104
     li $t1, 0xBABABA
     li $t2, 2
-C781:
+D781:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C781
+    bnez $t2, D781
     li $t0, 0x1001110C
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10011110
     li $t1, 0xBABABA
     li $t2, 2
-C783:
+D783:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C783
+    bnez $t2, D783
     li $t0, 0x10011118
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -2935,19 +2935,19 @@ C783:
     li $t0, 0x1001113C
     li $t1, 0xB9B9B9
     li $t2, 2
-C793:
+D793:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C793
+    bnez $t2, D793
     li $t0, 0x10011144
     li $t1, 0xBABABA
     li $t2, 3
-C794:
+D794:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C794
+    bnez $t2, D794
     li $t0, 0x10011150
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -2984,11 +2984,11 @@ C794:
     li $t0, 0x1001117C
     li $t1, 0xB9B9B9
     li $t2, 4
-C806:
+D806:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C806
+    bnez $t2, D806
     li $t0, 0x1001118C
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -3073,19 +3073,19 @@ C806:
     li $t0, 0x100111F8
     li $t1, 0xB9B9B9
     li $t2, 3
-C834:
+D834:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C834
+    bnez $t2, D834
     li $t0, 0x10011204
     li $t1, 0xBABABA
     li $t2, 5
-C835:
+D835:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C835
+    bnez $t2, D835
     li $t0, 0x10011218
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -3113,18 +3113,18 @@ C835:
     li $t0, 0x10011238
     li $t1, 0xBABABA
     li $t2, 6
-C844:
+D844:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C844
+    bnez $t2, D844
     li $t0, 0x10011250
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10011254
     li $t1, 0x098709
     sw $t1, 0($t0)
-    li $t0, 0x10011258
+    li $t0, 0x10011258 # janelas verdes e detalhes das colunas — linha 18, col 22
     li $t1, 0x070D5B
     sw $t1, 0($t0)
     li $t0, 0x1001125C
@@ -3148,19 +3148,19 @@ C844:
     li $t0, 0x10011274
     li $t1, 0xB9B9B9
     li $t2, 2
-C854:
+D854:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C854
+    bnez $t2, D854
     li $t0, 0x1001127C
     li $t1, 0xBABABA
     li $t2, 3
-C855:
+D855:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C855
+    bnez $t2, D855
     li $t0, 0x10011288
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -3203,11 +3203,11 @@ C855:
     li $t0, 0x100112BC
     li $t1, 0xBABABA
     li $t2, 2
-C869:
+D869:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C869
+    bnez $t2, D869
     li $t0, 0x100112C4
     li $t1, 0xB9B7B8
     sw $t1, 0($t0)
@@ -3235,11 +3235,11 @@ C869:
     li $t0, 0x100112E4
     li $t1, 0xBABABA
     li $t2, 2
-C878:
+D878:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C878
+    bnez $t2, D878
     li $t0, 0x100112EC
     li $t1, 0xC1C1C1
     sw $t1, 0($t0)
@@ -3258,19 +3258,19 @@ C878:
     li $t0, 0x10011300
     li $t1, 0xB9B9B9
     li $t2, 2
-C884:
+D884:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C884
+    bnez $t2, D884
     li $t0, 0x10011308
     li $t1, 0xBABABA
     li $t2, 4
-C885:
+D885:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C885
+    bnez $t2, D885
     li $t0, 0x10011318
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -3301,22 +3301,22 @@ C885:
     li $t0, 0x1001133C
     li $t1, 0xBABABA
     li $t2, 2
-C895:
+D895:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C895
+    bnez $t2, D895
     li $t0, 0x10011344
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10011348
     li $t1, 0xB8B8B8
     li $t2, 2
-C897:
+D897:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C897
+    bnez $t2, D897
     li $t0, 0x10011350
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -3347,22 +3347,22 @@ C897:
     li $t0, 0x10011374
     li $t1, 0xB9B9B9
     li $t2, 2
-C907:
+D907:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C907
+    bnez $t2, D907
     li $t0, 0x1001137C
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10011380
     li $t1, 0xB9B9B9
     li $t2, 3
-C909:
+D909:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C909
+    bnez $t2, D909
     li $t0, 0x1001138C
     li $t1, 0xBDBDBD
     sw $t1, 0($t0)
@@ -3405,7 +3405,7 @@ C909:
     li $t0, 0x100113C0
     li $t1, 0xBABABA
     sw $t1, 0($t0)
-    li $t0, 0x100113C4
+    li $t0, 0x100113C4 # janelas verdes e detalhes das colunas — linha 19, col 49
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x100113C8
@@ -3453,19 +3453,19 @@ C909:
     li $t0, 0x10011400
     li $t1, 0xBABABA
     li $t2, 3
-C939:
+D939:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C939
+    bnez $t2, D939
     li $t0, 0x1001140C
     li $t1, 0xB9B9B9
     li $t2, 4
-C940:
+D940:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C940
+    bnez $t2, D940
     li $t0, 0x1001141C
     li $t1, 0x616161
     sw $t1, 0($t0)
@@ -3493,19 +3493,19 @@ C940:
     li $t0, 0x1001143C
     li $t1, 0xBABABA
     li $t2, 2
-C949:
+D949:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C949
+    bnez $t2, D949
     li $t0, 0x10011444
     li $t1, 0xB9B9B9
     li $t2, 4
-C950:
+D950:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C950
+    bnez $t2, D950
     li $t0, 0x10011454
     li $t1, 0x207E20
     sw $t1, 0($t0)
@@ -3545,11 +3545,11 @@ C950:
     li $t0, 0x10011484
     li $t1, 0xBABABA
     li $t2, 2
-C963:
+D963:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C963
+    bnez $t2, D963
     li $t0, 0x1001148C
     li $t1, 0xBFBFBF
     sw $t1, 0($t0)
@@ -3643,11 +3643,11 @@ C963:
     li $t0, 0x10011504
     li $t1, 0xBABABA
     li $t2, 5
-C994:
+D994:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C994
+    bnez $t2, D994
     li $t0, 0x10011518
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -3660,28 +3660,28 @@ C994:
     li $t0, 0x10011524
     li $t1, 0xBABABA
     li $t2, 2
-C998:
+D998:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C998
+    bnez $t2, D998
     li $t0, 0x1001152C
     li $t1, 0x707070
     sw $t1, 0($t0)
     li $t0, 0x10011530
     li $t1, 0x3B3B3B
     sw $t1, 0($t0)
-    li $t0, 0x10011534
+    li $t0, 0x10011534 # janelas verdes e detalhes das colunas — linha 21, col 13
     li $t1, 0x030303
     sw $t1, 0($t0)
     li $t0, 0x10011538
     li $t1, 0xB9B9B9
     li $t2, 7
-C1002:
+D1002:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1002
+    bnez $t2, D1002
     li $t0, 0x10011554
     li $t1, 0x0C9509
     sw $t1, 0($t0)
@@ -3715,19 +3715,19 @@ C1002:
     li $t0, 0x1001157C
     li $t1, 0xB9B9B9
     li $t2, 2
-C1013:
+D1013:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1013
+    bnez $t2, D1013
     li $t0, 0x10011584
     li $t1, 0xBABABA
     li $t2, 2
-C1014:
+D1014:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1014
+    bnez $t2, D1014
     li $t0, 0x1001158C
     li $t1, 0xBDBDBD
     sw $t1, 0($t0)
@@ -3737,11 +3737,11 @@ C1014:
     li $t0, 0x10011594
     li $t1, 0xB9B9B9
     li $t2, 2
-C1017:
+D1017:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1017
+    bnez $t2, D1017
     li $t0, 0x1001159C
     li $t1, 0xBFBFBF
     sw $t1, 0($t0)
@@ -3760,11 +3760,11 @@ C1017:
     li $t0, 0x100115B0
     li $t1, 0xBABABA
     li $t2, 5
-C1023:
+D1023:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1023
+    bnez $t2, D1023
     li $t0, 0x100115C4
     li $t1, 0xBBB9BA
     sw $t1, 0($t0)
@@ -3810,17 +3810,17 @@ C1023:
     li $t0, 0x100115FC
     li $t1, 0x606060
     sw $t1, 0($t0)
-    li $t0, 0x10011600
+    li $t0, 0x10011600 # Início da região: base das colunas e detalhes da parede (linha 22, col 0)
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10011604
     li $t1, 0xBABABA
     li $t2, 5
-C1040:
+D1040:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1040
+    bnez $t2, D1040
     li $t0, 0x10011618
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -3848,11 +3848,11 @@ C1040:
     li $t0, 0x10011638
     li $t1, 0xB9B9B9
     li $t2, 7
-C1049:
+D1049:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1049
+    bnez $t2, D1049
     li $t0, 0x10011654
     li $t1, 0x228221
     sw $t1, 0($t0)
@@ -3889,11 +3889,11 @@ C1049:
     li $t0, 0x10011680
     li $t1, 0xB9B9B9
     li $t2, 2
-C1061:
+D1061:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1061
+    bnez $t2, D1061
     li $t0, 0x10011688
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -3918,19 +3918,19 @@ C1061:
     li $t0, 0x100116A4
     li $t1, 0x000000
     li $t2, 2
-C1069:
+D1069:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1069
+    bnez $t2, D1069
     li $t0, 0x100116AC
     li $t1, 0xBABABA
     li $t2, 7
-C1070:
+D1070:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1070
+    bnez $t2, D1070
     li $t0, 0x100116C8
     li $t1, 0x0E7F09
     sw $t1, 0($t0)
@@ -3952,7 +3952,7 @@ C1070:
     li $t0, 0x100116E0
     li $t1, 0x141474
     sw $t1, 0($t0)
-    li $t0, 0x100116E4
+    li $t0, 0x100116E4 # base das colunas e detalhes da parede — linha 22, col 57
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100116E8
@@ -3973,27 +3973,27 @@ C1070:
     li $t0, 0x100116FC
     li $t1, 0xB9B9B9
     li $t2, 2
-C1084:
+D1084:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1084
+    bnez $t2, D1084
     li $t0, 0x10011704
     li $t1, 0xBABABA
     li $t2, 4
-C1085:
+D1085:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1085
+    bnez $t2, D1085
     li $t0, 0x10011714
     li $t1, 0xB9B9B9
     li $t2, 2
-C1086:
+D1086:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1086
+    bnez $t2, D1086
     li $t0, 0x1001171C
     li $t1, 0x000000
     sw $t1, 0($t0)
@@ -4018,11 +4018,11 @@ C1086:
     li $t0, 0x10011738
     li $t1, 0xB9B9B9
     li $t2, 7
-C1094:
+D1094:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1094
+    bnez $t2, D1094
     li $t0, 0x10011754
     li $t1, 0x258021
     sw $t1, 0($t0)
@@ -4086,38 +4086,38 @@ C1094:
     li $t0, 0x100117A4
     li $t1, 0x000000
     li $t2, 2
-C1115:
+D1115:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1115
+    bnez $t2, D1115
     li $t0, 0x100117AC
     li $t1, 0xBABABA
     li $t2, 5
-C1116:
+D1116:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1116
+    bnez $t2, D1116
     li $t0, 0x100117C0
     li $t1, 0xB9B9B9
     li $t2, 2
-C1117:
+D1117:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1117
+    bnez $t2, D1117
     li $t0, 0x100117C8
     li $t1, 0x0F800C
     sw $t1, 0($t0)
     li $t0, 0x100117CC
     li $t1, 0x241687
     li $t2, 2
-C1119:
+D1119:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1119
+    bnez $t2, D1119
     li $t0, 0x100117D4
     li $t1, 0x176412
     sw $t1, 0($t0)
@@ -4142,11 +4142,11 @@ C1119:
     li $t0, 0x100117F0
     li $t1, 0x020202
     li $t2, 2
-C1127:
+D1127:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1127
+    bnez $t2, D1127
     li $t0, 0x100117F8
     li $t1, 0x7B7B7B
     sw $t1, 0($t0)
@@ -4156,11 +4156,11 @@ C1127:
     li $t0, 0x10011800
     li $t1, 0xBABABA
     li $t2, 6
-C1130:
+D1130:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1130
+    bnez $t2, D1130
     li $t0, 0x10011818
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4188,11 +4188,11 @@ C1130:
     li $t0, 0x10011838
     li $t1, 0xBABABA
     li $t2, 6
-C1139:
+D1139:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1139
+    bnez $t2, D1139
     li $t0, 0x10011850
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4238,7 +4238,7 @@ C1139:
     li $t0, 0x10011888
     li $t1, 0x7F7F7F
     sw $t1, 0($t0)
-    li $t0, 0x1001188C
+    li $t0, 0x1001188C # base das colunas e detalhes da parede — linha 24, col 35
     li $t1, 0xC0C0C0
     sw $t1, 0($t0)
     li $t0, 0x10011890
@@ -4259,19 +4259,19 @@ C1139:
     li $t0, 0x100118A4
     li $t1, 0x000000
     li $t2, 2
-C1161:
+D1161:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1161
+    bnez $t2, D1161
     li $t0, 0x100118AC
     li $t1, 0xBABABA
     li $t2, 5
-C1162:
+D1162:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1162
+    bnez $t2, D1162
     li $t0, 0x100118C0
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4293,11 +4293,11 @@ C1162:
     li $t0, 0x100118D8
     li $t1, 0x000B00
     li $t2, 2
-C1169:
+D1169:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1169
+    bnez $t2, D1169
     li $t0, 0x100118E0
     li $t1, 0x003000
     sw $t1, 0($t0)
@@ -4310,11 +4310,11 @@ C1169:
     li $t0, 0x100118EC
     li $t1, 0x000000
     li $t2, 2
-C1173:
+D1173:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1173
+    bnez $t2, D1173
     li $t0, 0x100118F4
     li $t1, 0x323232
     sw $t1, 0($t0)
@@ -4327,11 +4327,11 @@ C1173:
     li $t0, 0x10011900
     li $t1, 0xBABABA
     li $t2, 7
-C1177:
+D1177:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1177
+    bnez $t2, D1177
     li $t0, 0x1001191C
     li $t1, 0x000000
     sw $t1, 0($t0)
@@ -4356,11 +4356,11 @@ C1177:
     li $t0, 0x10011938
     li $t1, 0xBABABA
     li $t2, 6
-C1185:
+D1185:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1185
+    bnez $t2, D1185
     li $t0, 0x10011950
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4370,11 +4370,11 @@ C1185:
     li $t0, 0x10011958
     li $t1, 0x261A8A
     li $t2, 2
-C1188:
+D1188:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1188
+    bnez $t2, D1188
     li $t0, 0x10011960
     li $t1, 0x148827
     sw $t1, 0($t0)
@@ -4435,22 +4435,22 @@ C1188:
     li $t0, 0x100119AC
     li $t1, 0xBABABA
     li $t2, 2
-C1208:
+D1208:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1208
+    bnez $t2, D1208
     li $t0, 0x100119B4
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
     li $t0, 0x100119B8
     li $t1, 0xBABABA
     li $t2, 3
-C1210:
+D1210:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1210
+    bnez $t2, D1210
     li $t0, 0x100119C4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4493,11 +4493,11 @@ C1210:
     li $t0, 0x100119F8
     li $t1, 0xB9B9B9
     li $t2, 2
-C1224:
+D1224:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1224
+    bnez $t2, D1224
     li $t0, 0x10011A00
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -4513,18 +4513,18 @@ C1224:
     li $t0, 0x10011A10
     li $t1, 0xBABABA
     li $t2, 2
-C1229:
+D1229:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1229
+    bnez $t2, D1229
     li $t0, 0x10011A18
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
     li $t0, 0x10011A1C
     li $t1, 0x000000
     sw $t1, 0($t0)
-    li $t0, 0x10011A20
+    li $t0, 0x10011A20 # base das colunas e detalhes da parede — linha 26, col 8
     li $t1, 0x686868
     sw $t1, 0($t0)
     li $t0, 0x10011A24
@@ -4545,19 +4545,19 @@ C1229:
     li $t0, 0x10011A38
     li $t1, 0xB9B9B9
     li $t2, 4
-C1238:
+D1238:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1238
+    bnez $t2, D1238
     li $t0, 0x10011A48
     li $t1, 0xBABABA
     li $t2, 2
-C1239:
+D1239:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1239
+    bnez $t2, D1239
     li $t0, 0x10011A50
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4630,19 +4630,19 @@ C1239:
     li $t0, 0x10011AAC
     li $t1, 0xB9B9B9
     li $t2, 2
-C1263:
+D1263:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1263
+    bnez $t2, D1263
     li $t0, 0x10011AB4
     li $t1, 0xBABABA
     li $t2, 4
-C1264:
+D1264:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1264
+    bnez $t2, D1264
     li $t0, 0x10011AC4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4682,11 +4682,11 @@ C1264:
     li $t0, 0x10011AF4
     li $t1, 0xBABABA
     li $t2, 2
-C1277:
+D1277:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1277
+    bnez $t2, D1277
     li $t0, 0x10011AFC
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -4699,11 +4699,11 @@ C1277:
     li $t0, 0x10011B08
     li $t1, 0xBABABA
     li $t2, 3
-C1281:
+D1281:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1281
+    bnez $t2, D1281
     li $t0, 0x10011B14
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
@@ -4743,11 +4743,11 @@ C1281:
     li $t0, 0x10011B44
     li $t1, 0xBABABA
     li $t2, 4
-C1294:
+D1294:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1294
+    bnez $t2, D1294
     li $t0, 0x10011B54
     li $t1, 0x767873
     sw $t1, 0($t0)
@@ -4778,11 +4778,11 @@ C1294:
     li $t0, 0x10011B78
     li $t1, 0xB9B9B9
     li $t2, 3
-C1304:
+D1304:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1304
+    bnez $t2, D1304
     li $t0, 0x10011B84
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -4795,7 +4795,7 @@ C1304:
     li $t0, 0x10011B90
     li $t1, 0x131313
     sw $t1, 0($t0)
-    li $t0, 0x10011B94
+    li $t0, 0x10011B94 # base das colunas e detalhes da parede — linha 27, col 37
     li $t1, 0x0F0F0F
     sw $t1, 0($t0)
     li $t0, 0x10011B98
@@ -4825,11 +4825,11 @@ C1304:
     li $t0, 0x10011BB8
     li $t1, 0xBBBBBB
     li $t2, 2
-C1318:
+D1318:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1318
+    bnez $t2, D1318
     li $t0, 0x10011BC0
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -4866,23 +4866,23 @@ C1318:
     li $t0, 0x10011BEC
     li $t1, 0xB9B9B9
     li $t2, 2
-C1330:
+D1330:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1330
+    bnez $t2, D1330
     li $t0, 0x10011BF4
     li $t1, 0xBABABA
     li $t2, 2
-C1331:
+D1331:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1331
+    bnez $t2, D1331
     li $t0, 0x10011BFC
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
-    li $t0, 0x10011C00
+    li $t0, 0x10011C00 # Início da região: base da parede / rodapé do cenário (linha 28, col 0)
     li $t1, 0xB6B6B6
     sw $t1, 0($t0)
     li $t0, 0x10011C04
@@ -4891,11 +4891,11 @@ C1331:
     li $t0, 0x10011C08
     li $t1, 0xBABABA
     li $t2, 3
-C1335:
+D1335:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1335
+    bnez $t2, D1335
     li $t0, 0x10011C14
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -4929,22 +4929,22 @@ C1335:
     li $t0, 0x10011C3C
     li $t1, 0xB9B9B9
     li $t2, 6
-C1346:
+D1346:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1346
+    bnez $t2, D1346
     li $t0, 0x10011C54
     li $t1, 0xB7B7B7
     sw $t1, 0($t0)
     li $t0, 0x10011C58
     li $t1, 0xB9B9B9
     li $t2, 6
-C1348:
+D1348:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1348
+    bnez $t2, D1348
     li $t0, 0x10011C70
     li $t1, 0xB7B7B7
     sw $t1, 0($t0)
@@ -4954,11 +4954,11 @@ C1348:
     li $t0, 0x10011C78
     li $t1, 0xB9B9B9
     li $t2, 3
-C1351:
+D1351:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1351
+    bnez $t2, D1351
     li $t0, 0x10011C84
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
@@ -4995,19 +4995,19 @@ C1351:
     li $t0, 0x10011CB0
     li $t1, 0xB9B9B9
     li $t2, 3
-C1363:
+D1363:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1363
+    bnez $t2, D1363
     li $t0, 0x10011CBC
     li $t1, 0xBABABA
     li $t2, 2
-C1364:
+D1364:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1364
+    bnez $t2, D1364
     li $t0, 0x10011CC4
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -5017,52 +5017,52 @@ C1364:
     li $t0, 0x10011CCC
     li $t1, 0xB9B9B9
     li $t2, 2
-C1367:
+D1367:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1367
+    bnez $t2, D1367
     li $t0, 0x10011CD4
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10011CD8
     li $t1, 0xB9B9B9
     li $t2, 3
-C1369:
+D1369:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1369
+    bnez $t2, D1369
     li $t0, 0x10011CE4
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
     li $t0, 0x10011CE8
     li $t1, 0xBABABA
     li $t2, 3
-C1371:
+D1371:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1371
+    bnez $t2, D1371
     li $t0, 0x10011CF4
     li $t1, 0xB9B9B9
     li $t2, 3
-C1372:
+D1372:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1372
+    bnez $t2, D1372
     li $t0, 0x10011D00
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10011D04
     li $t1, 0xB9B9B9
     li $t2, 2
-C1374:
+D1374:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1374
+    bnez $t2, D1374
     li $t0, 0x10011D0C
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -5093,15 +5093,15 @@ C1374:
     li $t0, 0x10011D30
     li $t1, 0x000000
     li $t2, 2
-C1384:
+D1384:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1384
+    bnez $t2, D1384
     li $t0, 0x10011D38
     li $t1, 0xB8B8B8
     sw $t1, 0($t0)
-    li $t0, 0x10011D3C
+    li $t0, 0x10011D3C # base da parede / rodapé do cenário — linha 29, col 15
     li $t1, 0xBABABA
     sw $t1, 0($t0)
     li $t0, 0x10011D40
@@ -5116,11 +5116,11 @@ C1384:
     li $t0, 0x10011D4C
     li $t1, 0xBABABA
     li $t2, 4
-C1390:
+D1390:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1390
+    bnez $t2, D1390
     li $t0, 0x10011D5C
     li $t1, 0xB9B9B9
     sw $t1, 0($t0)
@@ -5178,11 +5178,11 @@ C1390:
     li $t0, 0x10011DA4
     li $t1, 0x000000
     li $t2, 2
-C1409:
+D1409:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1409
+    bnez $t2, D1409
     li $t0, 0x10011DAC
     li $t1, 0xBABABA
     sw $t1, 0($t0)
@@ -5198,11 +5198,11 @@ C1409:
     li $t0, 0x10011DBC
     li $t1, 0xBABABA
     li $t2, 2
-C1414:
+D1414:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1414
+    bnez $t2, D1414
     li $t0, 0x10011DC4
     li $t1, 0xBCBCBC
     sw $t1, 0($t0)
@@ -5215,19 +5215,19 @@ C1414:
     li $t0, 0x10011DD0
     li $t1, 0xBABABA
     li $t2, 2
-C1418:
+D1418:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1418
+    bnez $t2, D1418
     li $t0, 0x10011DD8
     li $t1, 0xB9B9B9
     li $t2, 2
-C1419:
+D1419:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1419
+    bnez $t2, D1419
     li $t0, 0x10011DE0
     li $t1, 0xBBBBBB
     sw $t1, 0($t0)
@@ -5252,7 +5252,7 @@ C1419:
     li $t0, 0x10011DFC
     li $t1, 0xB6B6B6
     sw $t1, 0($t0)
-    li $t0, 0x10011E00
+    li $t0, 0x10011E00 # Início da região: chão de tijolos laranjos (linha 30, col 0)
     li $t1, 0xC7460D
     sw $t1, 0($t0)
     li $t0, 0x10011E04
@@ -5321,11 +5321,11 @@ C1419:
     li $t0, 0x10011E58
     li $t1, 0xC64605
     li $t2, 2
-C1450:
+D1450:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1450
+    bnez $t2, D1450
     li $t0, 0x10011E60
     li $t1, 0x836B61
     sw $t1, 0($t0)
@@ -5362,7 +5362,7 @@ C1450:
     li $t0, 0x10011E8C
     li $t1, 0x626365
     sw $t1, 0($t0)
-    li $t0, 0x10011E90
+    li $t0, 0x10011E90 # chão de tijolos laranjos — linha 30, col 36
     li $t1, 0xC44707
     sw $t1, 0($t0)
     li $t0, 0x10011E94
@@ -5389,11 +5389,11 @@ C1450:
     li $t0, 0x10011EB0
     li $t1, 0xC44707
     li $t2, 2
-C1471:
+D1471:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1471
+    bnez $t2, D1471
     li $t0, 0x10011EB8
     li $t1, 0xD0B5AC
     sw $t1, 0($t0)
@@ -5583,11 +5583,11 @@ C1471:
     li $t0, 0x10011FB0
     li $t1, 0xC64609
     li $t2, 2
-C1534:
+D1534:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, C1534
+    bnez $t2, D1534
     li $t0, 0x10011FB8
     li $t1, 0xCEBAB1
     sw $t1, 0($t0)
@@ -5603,7 +5603,7 @@ C1534:
     li $t0, 0x10011FC8
     li $t1, 0xC84705
     sw $t1, 0($t0)
-    li $t0, 0x10011FCC
+    li $t0, 0x10011FCC # chão de tijolos laranjos — linha 31, col 51
     li $t1, 0xC3470B
     sw $t1, 0($t0)
     li $t0, 0x10011FD0

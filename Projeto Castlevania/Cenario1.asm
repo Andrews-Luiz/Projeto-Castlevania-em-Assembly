@@ -3,7 +3,7 @@
 .text
 
 desenha_cenario1:
-    li $t0, 0x10010000
+    li $t0, 0x10010000 # Início da região: céu noturno azul escuro (linha 0, col 0)
     li $t1, 0x1C148B
     sw $t1, 0($t0)
     li $t0, 0x10010004
@@ -24,11 +24,11 @@ desenha_cenario1:
     li $t0, 0x10010018
     li $t1, 0x1D1489
     li $t2, 2
-L6:
+D6:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L6
+    bnez $t2, D6
     li $t0, 0x10010020
     li $t1, 0x1C1589
     sw $t1, 0($t0)
@@ -44,22 +44,22 @@ L6:
     li $t0, 0x10010030
     li $t1, 0x1C1589
     li $t2, 9
-L11:
+D11:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L11
+    bnez $t2, D11
     li $t0, 0x10010054
     li $t1, 0x1B1488
     sw $t1, 0($t0)
     li $t0, 0x10010058
     li $t1, 0x1C1589
     li $t2, 2
-L13:
+D13:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L13
+    bnez $t2, D13
     li $t0, 0x10010060
     li $t1, 0x1C1587
     sw $t1, 0($t0)
@@ -90,11 +90,11 @@ L13:
     li $t0, 0x10010084
     li $t1, 0x1D1489
     li $t2, 2
-L23:
+D23:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L23
+    bnez $t2, D23
     li $t0, 0x1001008C
     li $t1, 0x1D1487
     sw $t1, 0($t0)
@@ -104,11 +104,11 @@ L23:
     li $t0, 0x10010094
     li $t1, 0x1C1589
     li $t2, 3
-L26:
+D26:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L26
+    bnez $t2, D26
     li $t0, 0x100100A0
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -130,11 +130,11 @@ L26:
     li $t0, 0x100100B8
     li $t1, 0x010101
     li $t2, 2
-L33:
+D33:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L33
+    bnez $t2, D33
     li $t0, 0x100100C0
     li $t1, 0x715D52
     sw $t1, 0($t0)
@@ -189,19 +189,19 @@ L33:
     li $t0, 0x10010104
     li $t1, 0x1C1388
     li $t2, 2
-L51:
+D51:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L51
+    bnez $t2, D51
     li $t0, 0x1001010C
     li $t1, 0x1B1488
     li $t2, 2
-L52:
+D52:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L52
+    bnez $t2, D52
     li $t0, 0x10010114
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -223,11 +223,11 @@ L52:
     li $t0, 0x1001012C
     li $t1, 0x1B1488
     li $t2, 2
-L59:
+D59:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L59
+    bnez $t2, D59
     li $t0, 0x10010134
     li $t1, 0x1C1589
     sw $t1, 0($t0)
@@ -255,11 +255,11 @@ L59:
     li $t0, 0x10010154
     li $t1, 0x1C1388
     li $t2, 2
-L68:
+D68:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L68
+    bnez $t2, D68
     li $t0, 0x1001015C
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -290,22 +290,22 @@ L68:
     li $t0, 0x10010180
     li $t1, 0x1C1388
     sw $t1, 0($t0)
-    li $t0, 0x10010184
+    li $t0, 0x10010184 # céu noturno azul escuro — linha 1, col 33, 3 pixels seguidos
     li $t1, 0x1B1285
     li $t2, 3
-L79:
+D79:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L79
+    bnez $t2, D79
     li $t0, 0x10010190
     li $t1, 0x1C1386
     li $t2, 3
-L80:
+D80:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L80
+    bnez $t2, D80
     li $t0, 0x1001019C
     li $t1, 0x1D1489
     sw $t1, 0($t0)
@@ -354,11 +354,11 @@ L80:
     li $t0, 0x100101D8
     li $t1, 0x000000
     li $t2, 2
-L96:
+D96:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L96
+    bnez $t2, D96
     li $t0, 0x100101E0
     li $t1, 0x100700
     sw $t1, 0($t0)
@@ -389,60 +389,60 @@ L96:
     li $t0, 0x10010204
     li $t1, 0x1C1388
     li $t2, 5
-L106:
+D106:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L106
+    bnez $t2, D106
     li $t0, 0x10010218
     li $t1, 0x1B1285
     sw $t1, 0($t0)
     li $t0, 0x1001021C
     li $t1, 0x1C1388
     li $t2, 2
-L108:
+D108:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L108
+    bnez $t2, D108
     li $t0, 0x10010224
     li $t1, 0x1C1386
     sw $t1, 0($t0)
     li $t0, 0x10010228
     li $t1, 0x1C1388
     li $t2, 4
-L110:
+D110:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L110
+    bnez $t2, D110
     li $t0, 0x10010238
     li $t1, 0x1D1489
     li $t2, 3
-L111:
+D111:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L111
+    bnez $t2, D111
     li $t0, 0x10010244
     li $t1, 0x1B1488
     li $t2, 2
-L112:
+D112:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L112
+    bnez $t2, D112
     li $t0, 0x1001024C
     li $t1, 0x1C1388
     sw $t1, 0($t0)
     li $t0, 0x10010250
     li $t1, 0x1C1386
     li $t2, 2
-L114:
+D114:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L114
+    bnez $t2, D114
     li $t0, 0x10010258
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -455,38 +455,38 @@ L114:
     li $t0, 0x10010264
     li $t1, 0x1C1386
     li $t2, 3
-L118:
+D118:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L118
+    bnez $t2, D118
     li $t0, 0x10010270
     li $t1, 0x1B1285
     li $t2, 3
-L119:
+D119:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L119
+    bnez $t2, D119
     li $t0, 0x1001027C
     li $t1, 0x1C1386
     li $t2, 3
-L120:
+D120:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L120
+    bnez $t2, D120
     li $t0, 0x10010288
     li $t1, 0x1B1285
     sw $t1, 0($t0)
     li $t0, 0x1001028C
     li $t1, 0x1C1386
     li $t2, 5
-L122:
+D122:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L122
+    bnez $t2, D122
     li $t0, 0x100102A0
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -508,11 +508,11 @@ L122:
     li $t0, 0x100102B8
     li $t1, 0x000000
     li $t2, 2
-L129:
+D129:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L129
+    bnez $t2, D129
     li $t0, 0x100102C0
     li $t1, 0x000301
     sw $t1, 0($t0)
@@ -573,11 +573,11 @@ L129:
     li $t0, 0x1001030C
     li $t1, 0x1D1487
     li $t2, 2
-L149:
+D149:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L149
+    bnez $t2, D149
     li $t0, 0x10010314
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -602,7 +602,7 @@ L149:
     li $t0, 0x10010330
     li $t1, 0x1D148B
     sw $t1, 0($t0)
-    li $t0, 0x10010334
+    li $t0, 0x10010334 # céu noturno azul escuro — linha 3, col 13
     li $t1, 0x1B1287
     sw $t1, 0($t0)
     li $t0, 0x10010338
@@ -617,27 +617,27 @@ L149:
     li $t0, 0x10010344
     li $t1, 0x1C1388
     li $t2, 3
-L162:
+D162:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L162
+    bnez $t2, D162
     li $t0, 0x10010350
     li $t1, 0x1D1487
     li $t2, 2
-L163:
+D163:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L163
+    bnez $t2, D163
     li $t0, 0x10010358
     li $t1, 0x1C1386
     li $t2, 2
-L164:
+D164:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L164
+    bnez $t2, D164
     li $t0, 0x10010360
     li $t1, 0x1D1489
     sw $t1, 0($t0)
@@ -647,11 +647,11 @@ L164:
     li $t0, 0x10010368
     li $t1, 0x1C1386
     li $t2, 3
-L167:
+D167:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L167
+    bnez $t2, D167
     li $t0, 0x10010374
     li $t1, 0x1D1487
     sw $t1, 0($t0)
@@ -661,11 +661,11 @@ L167:
     li $t0, 0x1001037C
     li $t1, 0x1C1386
     li $t2, 2
-L170:
+D170:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L170
+    bnez $t2, D170
     li $t0, 0x10010384
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -708,11 +708,11 @@ L170:
     li $t0, 0x100103B8
     li $t1, 0x010101
     li $t2, 2
-L184:
+D184:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L184
+    bnez $t2, D184
     li $t0, 0x100103C0
     li $t1, 0x6D5952
     sw $t1, 0($t0)
@@ -767,19 +767,19 @@ L184:
     li $t0, 0x10010404
     li $t1, 0x1C1388
     li $t2, 2
-L202:
+D202:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L202
+    bnez $t2, D202
     li $t0, 0x1001040C
     li $t1, 0x1D1487
     li $t2, 2
-L203:
+D203:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L203
+    bnez $t2, D203
     li $t0, 0x10010414
     li $t1, 0x837BC6
     sw $t1, 0($t0)
@@ -813,19 +813,19 @@ L203:
     li $t0, 0x1001043C
     li $t1, 0x1C1386
     li $t2, 2
-L214:
+D214:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L214
+    bnez $t2, D214
     li $t0, 0x10010444
     li $t1, 0x1C1388
     li $t2, 2
-L215:
+D215:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L215
+    bnez $t2, D215
     li $t0, 0x1001044C
     li $t1, 0x1D1487
     sw $t1, 0($t0)
@@ -838,11 +838,11 @@ L215:
     li $t0, 0x10010458
     li $t1, 0x1C1386
     li $t2, 2
-L219:
+D219:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L219
+    bnez $t2, D219
     li $t0, 0x10010460
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -858,33 +858,33 @@ L219:
     li $t0, 0x10010470
     li $t1, 0x1C1386
     li $t2, 3
-L224:
+D224:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L224
+    bnez $t2, D224
     li $t0, 0x1001047C
     li $t1, 0x1C1388
     sw $t1, 0($t0)
     li $t0, 0x10010480
     li $t1, 0x1C1386
     li $t2, 3
-L226:
+D226:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L226
+    bnez $t2, D226
     li $t0, 0x1001048C
     li $t1, 0x1D1487
     sw $t1, 0($t0)
     li $t0, 0x10010490
     li $t1, 0x1C1386
     li $t2, 3
-L228:
+D228:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L228
+    bnez $t2, D228
     li $t0, 0x1001049C
     li $t1, 0x1C1191
     sw $t1, 0($t0)
@@ -909,7 +909,7 @@ L228:
     li $t0, 0x100104B8
     li $t1, 0xA44525
     sw $t1, 0($t0)
-    li $t0, 0x100104BC
+    li $t0, 0x100104BC # céu noturno azul escuro — linha 4, col 47
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100104C0
@@ -966,11 +966,11 @@ L228:
     li $t0, 0x10010504
     li $t1, 0x1C1386
     li $t2, 2
-L255:
+D255:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L255
+    bnez $t2, D255
     li $t0, 0x1001050C
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -986,11 +986,11 @@ L255:
     li $t0, 0x1001051C
     li $t1, 0x1C1388
     li $t2, 2
-L260:
+D260:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L260
+    bnez $t2, D260
     li $t0, 0x10010524
     li $t1, 0x1B1488
     sw $t1, 0($t0)
@@ -1006,11 +1006,11 @@ L260:
     li $t0, 0x10010534
     li $t1, 0x1C1388
     li $t2, 3
-L265:
+D265:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L265
+    bnez $t2, D265
     li $t0, 0x10010540
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -1020,11 +1020,11 @@ L265:
     li $t0, 0x10010548
     li $t1, 0x1C1386
     li $t2, 2
-L268:
+D268:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L268
+    bnez $t2, D268
     li $t0, 0x10010550
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -1067,11 +1067,11 @@ L268:
     li $t0, 0x10010584
     li $t1, 0x1C1386
     li $t2, 3
-L282:
+D282:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L282
+    bnez $t2, D282
     li $t0, 0x10010590
     li $t1, 0x1D1487
     sw $t1, 0($t0)
@@ -1087,11 +1087,11 @@ L282:
     li $t0, 0x100105A0
     li $t1, 0x000000
     li $t2, 2
-L287:
+D287:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L287
+    bnez $t2, D287
     li $t0, 0x100105A8
     li $t1, 0x000305
     sw $t1, 0($t0)
@@ -1101,11 +1101,11 @@ L287:
     li $t0, 0x100105B0
     li $t1, 0x000000
     li $t2, 2
-L290:
+D290:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L290
+    bnez $t2, D290
     li $t0, 0x100105B8
     li $t1, 0x1F1E1C
     sw $t1, 0($t0)
@@ -1163,19 +1163,19 @@ L290:
     li $t0, 0x10010600
     li $t1, 0x1C1386
     li $t2, 2
-L309:
+D309:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L309
+    bnez $t2, D309
     li $t0, 0x10010608
     li $t1, 0x1B1285
     li $t2, 3
-L310:
+D310:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L310
+    bnez $t2, D310
     li $t0, 0x10010614
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -1191,12 +1191,12 @@ L310:
     li $t0, 0x10010624
     li $t1, 0x1C1388
     li $t2, 2
-L315:
+D315:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L315
-    li $t0, 0x1001062C
+    bnez $t2, D315
+    li $t0, 0x1001062C # céu noturno azul escuro — linha 6, col 11
     li $t1, 0x1D1487
     sw $t1, 0($t0)
     li $t0, 0x10010630
@@ -1211,22 +1211,22 @@ L315:
     li $t0, 0x1001063C
     li $t1, 0x1C1386
     li $t2, 2
-L320:
+D320:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L320
+    bnez $t2, D320
     li $t0, 0x10010644
     li $t1, 0x1B1285
     sw $t1, 0($t0)
     li $t0, 0x10010648
     li $t1, 0x1C1386
     li $t2, 2
-L322:
+D322:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L322
+    bnez $t2, D322
     li $t0, 0x10010650
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -1284,11 +1284,11 @@ L322:
     li $t0, 0x10010698
     li $t1, 0x000000
     li $t2, 4
-L341:
+D341:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L341
+    bnez $t2, D341
     li $t0, 0x100106A8
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -1361,11 +1361,11 @@ L341:
     li $t0, 0x10010704
     li $t1, 0x1C1386
     li $t2, 3
-L365:
+D365:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L365
+    bnez $t2, D365
     li $t0, 0x10010710
     li $t1, 0x1D1487
     sw $t1, 0($t0)
@@ -1375,30 +1375,30 @@ L365:
     li $t0, 0x10010718
     li $t1, 0x1D1489
     li $t2, 2
-L368:
+D368:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L368
+    bnez $t2, D368
     li $t0, 0x10010720
     li $t1, 0x1C1388
     li $t2, 4
-L369:
+D369:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L369
+    bnez $t2, D369
     li $t0, 0x10010730
     li $t1, 0x1B1287
     sw $t1, 0($t0)
     li $t0, 0x10010734
     li $t1, 0x1C1388
     li $t2, 2
-L371:
+D371:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L371
+    bnez $t2, D371
     li $t0, 0x1001073C
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -1414,22 +1414,22 @@ L371:
     li $t0, 0x1001074C
     li $t1, 0x1C1386
     li $t2, 2
-L376:
+D376:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L376
+    bnez $t2, D376
     li $t0, 0x10010754
     li $t1, 0x1D1487
     sw $t1, 0($t0)
     li $t0, 0x10010758
     li $t1, 0x1B1285
     li $t2, 2
-L378:
+D378:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L378
+    bnez $t2, D378
     li $t0, 0x10010760
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -1445,35 +1445,35 @@ L378:
     li $t0, 0x10010770
     li $t1, 0x1C1386
     li $t2, 2
-L383:
+D383:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L383
+    bnez $t2, D383
     li $t0, 0x10010778
     li $t1, 0x1B1285
     li $t2, 2
-L384:
+D384:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L384
+    bnez $t2, D384
     li $t0, 0x10010780
     li $t1, 0x1C1386
     li $t2, 2
-L385:
+D385:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L385
+    bnez $t2, D385
     li $t0, 0x10010788
     li $t1, 0x1B1285
     li $t2, 2
-L386:
+D386:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L386
+    bnez $t2, D386
     li $t0, 0x10010790
     li $t1, 0x1C1386
     sw $t1, 0($t0)
@@ -1483,37 +1483,37 @@ L386:
     li $t0, 0x10010798
     li $t1, 0x010101
     li $t2, 2
-L389:
+D389:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L389
+    bnez $t2, D389
     li $t0, 0x100107A0
     li $t1, 0x000000
     li $t2, 3
-L390:
+D390:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L390
+    bnez $t2, D390
     li $t0, 0x100107AC
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100107B0
     li $t1, 0x000000
     li $t2, 2
-L392:
+D392:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L392
+    bnez $t2, D392
     li $t0, 0x100107B8
     li $t1, 0x050000
     sw $t1, 0($t0)
     li $t0, 0x100107BC
     li $t1, 0x000213
     sw $t1, 0($t0)
-    li $t0, 0x100107C0
+    li $t0, 0x100107C0 # céu noturno azul escuro — linha 7, col 48
     li $t1, 0x000400
     sw $t1, 0($t0)
     li $t0, 0x100107C4
@@ -1573,22 +1573,22 @@ L392:
     li $t0, 0x1001080C
     li $t1, 0x1C1388
     li $t2, 2
-L414:
+D414:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L414
+    bnez $t2, D414
     li $t0, 0x10010814
     li $t1, 0x1C1386
     sw $t1, 0($t0)
     li $t0, 0x10010818
     li $t1, 0x1C1388
     li $t2, 2
-L416:
+D416:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L416
+    bnez $t2, D416
     li $t0, 0x10010820
     li $t1, 0x1D1489
     sw $t1, 0($t0)
@@ -1610,11 +1610,11 @@ L416:
     li $t0, 0x10010838
     li $t1, 0x1C1386
     li $t2, 2
-L423:
+D423:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L423
+    bnez $t2, D423
     li $t0, 0x10010840
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -1630,11 +1630,11 @@ L423:
     li $t0, 0x10010850
     li $t1, 0x1C1386
     li $t2, 4
-L428:
+D428:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L428
+    bnez $t2, D428
     li $t0, 0x10010860
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -1647,11 +1647,11 @@ L428:
     li $t0, 0x1001086C
     li $t1, 0x1C1386
     li $t2, 4
-L432:
+D432:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L432
+    bnez $t2, D432
     li $t0, 0x1001087C
     li $t1, 0x1B1285
     sw $t1, 0($t0)
@@ -1688,11 +1688,11 @@ L432:
     li $t0, 0x100108A8
     li $t1, 0x000000
     li $t2, 4
-L444:
+D444:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L444
+    bnez $t2, D444
     li $t0, 0x100108B8
     li $t1, 0x230200
     sw $t1, 0($t0)
@@ -1765,11 +1765,11 @@ L444:
     li $t0, 0x10010914
     li $t1, 0x1B1287
     li $t2, 2
-L468:
+D468:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L468
+    bnez $t2, D468
     li $t0, 0x1001091C
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -1785,7 +1785,7 @@ L468:
     li $t0, 0x1001092C
     li $t1, 0x0F2A47
     sw $t1, 0($t0)
-    li $t0, 0x10010930
+    li $t0, 0x10010930 # céu noturno azul escuro — linha 9, col 12
     li $t1, 0x1B1287
     sw $t1, 0($t0)
     li $t0, 0x10010934
@@ -1815,11 +1815,11 @@ L468:
     li $t0, 0x10010954
     li $t1, 0x1B1285
     li $t2, 2
-L483:
+D483:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L483
+    bnez $t2, D483
     li $t0, 0x1001095C
     li $t1, 0x1B1488
     sw $t1, 0($t0)
@@ -1838,11 +1838,11 @@ L483:
     li $t0, 0x10010970
     li $t1, 0x1B1285
     li $t2, 3
-L489:
+D489:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L489
+    bnez $t2, D489
     li $t0, 0x1001097C
     li $t1, 0x1C1388
     sw $t1, 0($t0)
@@ -1870,11 +1870,11 @@ L489:
     li $t0, 0x1001099C
     li $t1, 0x000000
     li $t2, 6
-L498:
+D498:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L498
+    bnez $t2, D498
     li $t0, 0x100109B4
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -1932,7 +1932,7 @@ L498:
     li $t0, 0x100109FC
     li $t1, 0x003F00
     sw $t1, 0($t0)
-    li $t0, 0x10010A00
+    li $t0, 0x10010A00 # Início da região: transição céu para floresta (linha 10, col 0)
     li $t1, 0x080204
     sw $t1, 0($t0)
     li $t0, 0x10010A04
@@ -2037,7 +2037,7 @@ L498:
     li $t0, 0x10010A88
     li $t1, 0x004A00
     sw $t1, 0($t0)
-    li $t0, 0x10010A8C
+    li $t0, 0x10010A8C # transição céu para floresta — linha 10, col 35
     li $t1, 0x000400
     sw $t1, 0($t0)
     li $t0, 0x10010A90
@@ -2049,11 +2049,11 @@ L498:
     li $t0, 0x10010A98
     li $t1, 0x000000
     li $t2, 4
-L556:
+D556:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L556
+    bnez $t2, D556
     li $t0, 0x10010AA8
     li $t1, 0xBD4701
     sw $t1, 0($t0)
@@ -2120,7 +2120,7 @@ L556:
     li $t0, 0x10010AFC
     li $t1, 0x072B07
     sw $t1, 0($t0)
-    li $t0, 0x10010B00
+    li $t0, 0x10010B00 # Início da região: copa das árvores da floresta (linha 11, col 0)
     li $t1, 0x197B18
     sw $t1, 0($t0)
     li $t0, 0x10010B04
@@ -2279,7 +2279,7 @@ L556:
     li $t0, 0x10010BD0
     li $t1, 0x050100
     sw $t1, 0($t0)
-    li $t0, 0x10010BD4
+    li $t0, 0x10010BD4 # copa das árvores da floresta — linha 11, col 53
     li $t1, 0x000800
     sw $t1, 0($t0)
     li $t0, 0x10010BD8
@@ -2429,19 +2429,19 @@ L556:
     li $t0, 0x10010C98
     li $t1, 0x000000
     li $t2, 2
-L681:
+D681:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L681
+    bnez $t2, D681
     li $t0, 0x10010CA0
     li $t1, 0x010101
     li $t2, 2
-L682:
+D682:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L682
+    bnez $t2, D682
     li $t0, 0x10010CA8
     li $t1, 0xB73F00
     sw $t1, 0($t0)
@@ -2526,7 +2526,7 @@ L682:
     li $t0, 0x10010D14
     li $t1, 0x004F00
     sw $t1, 0($t0)
-    li $t0, 0x10010D18
+    li $t0, 0x10010D18 # copa das árvores da floresta — linha 13, col 6
     li $t1, 0x000C00
     sw $t1, 0($t0)
     li $t0, 0x10010D1C
@@ -2628,11 +2628,11 @@ L682:
     li $t0, 0x10010D9C
     li $t1, 0x000000
     li $t2, 3
-L744:
+D744:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L744
+    bnez $t2, D744
     li $t0, 0x10010DA8
     li $t1, 0x210200
     sw $t1, 0($t0)
@@ -2660,11 +2660,11 @@ L744:
     li $t0, 0x10010DC8
     li $t1, 0x000000
     li $t2, 3
-L753:
+D753:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L753
+    bnez $t2, D753
     li $t0, 0x10010DD4
     li $t1, 0x070000
     sw $t1, 0($t0)
@@ -2773,7 +2773,7 @@ L753:
     li $t0, 0x10010E60
     li $t1, 0x157B15
     sw $t1, 0($t0)
-    li $t0, 0x10010E64
+    li $t0, 0x10010E64 # copa das árvores da floresta — linha 14, col 25
     li $t1, 0x000D00
     sw $t1, 0($t0)
     li $t0, 0x10010E68
@@ -2821,11 +2821,11 @@ L753:
     li $t0, 0x10010EA0
     li $t1, 0x000000
     li $t2, 2
-L805:
+D805:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L805
+    bnez $t2, D805
     li $t0, 0x10010EA8
     li $t1, 0xB4420E
     sw $t1, 0($t0)
@@ -2853,11 +2853,11 @@ L805:
     li $t0, 0x10010EC8
     li $t1, 0x000000
     li $t2, 4
-L814:
+D814:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L814
+    bnez $t2, D814
     li $t0, 0x10010ED8
     li $t1, 0x040000
     sw $t1, 0($t0)
@@ -2975,11 +2975,11 @@ L814:
     li $t0, 0x10010F70
     li $t1, 0x000000
     li $t2, 4
-L853:
+D853:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L853
+    bnez $t2, D853
     li $t0, 0x10010F80
     li $t1, 0x010014
     sw $t1, 0($t0)
@@ -2995,11 +2995,11 @@ L853:
     li $t0, 0x10010F90
     li $t1, 0x000000
     li $t2, 6
-L858:
+D858:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L858
+    bnez $t2, D858
     li $t0, 0x10010FA8
     li $t1, 0xB4460B
     sw $t1, 0($t0)
@@ -3027,15 +3027,15 @@ L858:
     li $t0, 0x10010FC8
     li $t1, 0x000000
     li $t2, 4
-L867:
+D867:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L867
+    bnez $t2, D867
     li $t0, 0x10010FD8
     li $t1, 0xAA4615
     sw $t1, 0($t0)
-    li $t0, 0x10010FDC
+    li $t0, 0x10010FDC # copa das árvores da floresta — linha 15, col 55
     li $t1, 0x020400
     sw $t1, 0($t0)
     li $t0, 0x10010FE0
@@ -3146,11 +3146,11 @@ L867:
     li $t0, 0x1001106C
     li $t1, 0x000000
     li $t2, 4
-L905:
+D905:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L905
+    bnez $t2, D905
     li $t0, 0x1001107C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -3166,11 +3166,11 @@ L905:
     li $t0, 0x1001108C
     li $t1, 0x000000
     li $t2, 3
-L910:
+D910:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L910
+    bnez $t2, D910
     li $t0, 0x10011098
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -3216,11 +3216,11 @@ L910:
     li $t0, 0x100110D0
     li $t1, 0x000000
     li $t2, 2
-L925:
+D925:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L925
+    bnez $t2, D925
     li $t0, 0x100110D8
     li $t1, 0x000005
     sw $t1, 0($t0)
@@ -3287,7 +3287,7 @@ L925:
     li $t0, 0x1001112C
     li $t1, 0x001E00
     sw $t1, 0($t0)
-    li $t0, 0x10011130
+    li $t0, 0x10011130 # copa das árvores da floresta — linha 17, col 12
     li $t1, 0x018A00
     sw $t1, 0($t0)
     li $t0, 0x10011134
@@ -3332,22 +3332,22 @@ L925:
     li $t0, 0x10011168
     li $t1, 0x000000
     li $t2, 2
-L962:
+D962:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L962
+    bnez $t2, D962
     li $t0, 0x10011170
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011174
     li $t1, 0x000000
     li $t2, 2
-L964:
+D964:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L964
+    bnez $t2, D964
     li $t0, 0x1001117C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -3372,11 +3372,11 @@ L964:
     li $t0, 0x10011198
     li $t1, 0x000000
     li $t2, 2
-L972:
+D972:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L972
+    bnez $t2, D972
     li $t0, 0x100111A0
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -3410,11 +3410,11 @@ L972:
     li $t0, 0x100111C8
     li $t1, 0x000000
     li $t2, 4
-L983:
+D983:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L983
+    bnez $t2, D983
     li $t0, 0x100111D8
     li $t1, 0x090600
     sw $t1, 0($t0)
@@ -3451,11 +3451,11 @@ L983:
     li $t0, 0x10011204
     li $t1, 0x004803
     li $t2, 2
-L995:
+D995:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L995
+    bnez $t2, D995
     li $t0, 0x1001120C
     li $t1, 0x004702
     sw $t1, 0($t0)
@@ -3519,33 +3519,33 @@ L995:
     li $t0, 0x1001125C
     li $t1, 0x000000
     li $t2, 4
-L1016:
+D1016:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1016
+    bnez $t2, D1016
     li $t0, 0x1001126C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011270
     li $t1, 0x000000
     li $t2, 11
-L1018:
+D1018:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1018
+    bnez $t2, D1018
     li $t0, 0x1001129C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100112A0
     li $t1, 0x000000
     li $t2, 2
-L1020:
+D1020:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1020
+    bnez $t2, D1020
     li $t0, 0x100112A8
     li $t1, 0xA34110
     sw $t1, 0($t0)
@@ -3564,7 +3564,7 @@ L1020:
     li $t0, 0x100112BC
     li $t1, 0xAE430B
     sw $t1, 0($t0)
-    li $t0, 0x100112C0
+    li $t0, 0x100112C0 # copa das árvores da floresta — linha 18, col 48
     li $t1, 0x020100
     sw $t1, 0($t0)
     li $t0, 0x100112C4
@@ -3573,19 +3573,19 @@ L1020:
     li $t0, 0x100112C8
     li $t1, 0x000000
     li $t2, 2
-L1029:
+D1029:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1029
+    bnez $t2, D1029
     li $t0, 0x100112D0
     li $t1, 0x010101
     li $t2, 2
-L1030:
+D1030:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1030
+    bnez $t2, D1030
     li $t0, 0x100112D8
     li $t1, 0x944123
     sw $t1, 0($t0)
@@ -3688,54 +3688,54 @@ L1030:
     li $t0, 0x1001135C
     li $t1, 0x000000
     li $t2, 4
-L1064:
+D1064:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1064
+    bnez $t2, D1064
     li $t0, 0x1001136C
     li $t1, 0x010101
     li $t2, 3
-L1065:
+D1065:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1065
+    bnez $t2, D1065
     li $t0, 0x10011378
     li $t1, 0x000000
     li $t2, 3
-L1066:
+D1066:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1066
+    bnez $t2, D1066
     li $t0, 0x10011384
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011388
     li $t1, 0x000000
     li $t2, 2
-L1068:
+D1068:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1068
+    bnez $t2, D1068
     li $t0, 0x10011390
     li $t1, 0x010101
     li $t2, 2
-L1069:
+D1069:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1069
+    bnez $t2, D1069
     li $t0, 0x10011398
     li $t1, 0x000000
     li $t2, 4
-L1070:
+D1070:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1070
+    bnez $t2, D1070
     li $t0, 0x100113A8
     li $t1, 0xA64A25
     sw $t1, 0($t0)
@@ -3763,11 +3763,11 @@ L1070:
     li $t0, 0x100113C8
     li $t1, 0x000000
     li $t2, 4
-L1079:
+D1079:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1079
+    bnez $t2, D1079
     li $t0, 0x100113D8
     li $t1, 0x605F67
     sw $t1, 0($t0)
@@ -3846,7 +3846,7 @@ L1079:
     li $t0, 0x1001143C
     li $t1, 0x146C08
     sw $t1, 0($t0)
-    li $t0, 0x10011440
+    li $t0, 0x10011440 # copa das árvores da floresta — linha 20, col 16
     li $t1, 0x019100
     sw $t1, 0($t0)
     li $t0, 0x10011444
@@ -3867,44 +3867,44 @@ L1079:
     li $t0, 0x10011458
     li $t1, 0x000000
     li $t2, 11
-L1112:
+D1112:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1112
+    bnez $t2, D1112
     li $t0, 0x10011484
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011488
     li $t1, 0x000000
     li $t2, 2
-L1114:
+D1114:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1114
+    bnez $t2, D1114
     li $t0, 0x10011490
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011494
     li $t1, 0x000000
     li $t2, 2
-L1116:
+D1116:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1116
+    bnez $t2, D1116
     li $t0, 0x1001149C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100114A0
     li $t1, 0x000000
     li $t2, 2
-L1118:
+D1118:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1118
+    bnez $t2, D1118
     li $t0, 0x100114A8
     li $t1, 0xC14A08
     sw $t1, 0($t0)
@@ -3932,11 +3932,11 @@ L1118:
     li $t0, 0x100114C8
     li $t1, 0x000000
     li $t2, 4
-L1127:
+D1127:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1127
+    bnez $t2, D1127
     li $t0, 0x100114D8
     li $t1, 0x080600
     sw $t1, 0($t0)
@@ -4006,11 +4006,11 @@ L1127:
     li $t0, 0x10011530
     li $t1, 0x000000
     li $t2, 4
-L1150:
+D1150:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1150
+    bnez $t2, D1150
     li $t0, 0x10011540
     li $t1, 0x1F1575
     sw $t1, 0($t0)
@@ -4026,22 +4026,22 @@ L1150:
     li $t0, 0x10011550
     li $t1, 0x000000
     li $t2, 5
-L1155:
+D1155:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1155
+    bnez $t2, D1155
     li $t0, 0x10011564
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011568
     li $t1, 0x000000
     li $t2, 7
-L1157:
+D1157:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1157
+    bnez $t2, D1157
     li $t0, 0x10011584
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4054,11 +4054,11 @@ L1157:
     li $t0, 0x10011590
     li $t1, 0x000000
     li $t2, 4
-L1161:
+D1161:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1161
+    bnez $t2, D1161
     li $t0, 0x100115A0
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4095,11 +4095,11 @@ L1161:
     li $t0, 0x100115CC
     li $t1, 0x000000
     li $t2, 3
-L1173:
+D1173:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1173
+    bnez $t2, D1173
     li $t0, 0x100115D8
     li $t1, 0x3C1802
     sw $t1, 0($t0)
@@ -4130,10 +4130,10 @@ L1173:
     li $t0, 0x100115FC
     li $t1, 0x014900
     sw $t1, 0($t0)
-    li $t0, 0x10011600
+    li $t0, 0x10011600 # Início da região: sombra e base da floresta / entrada do castelo (linha 22, col 0)
     li $t1, 0x000000
     sw $t1, 0($t0)
-    li $t0, 0x10011604
+    li $t0, 0x10011604 # sombra e base da floresta / entrada do castelo — linha 22, col 1
     li $t1, 0x1B128F
     sw $t1, 0($t0)
     li $t0, 0x10011608
@@ -4145,11 +4145,11 @@ L1173:
     li $t0, 0x10011610
     li $t1, 0x000000
     li $t2, 3
-L1188:
+D1188:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1188
+    bnez $t2, D1188
     li $t0, 0x1001161C
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4168,11 +4168,11 @@ L1188:
     li $t0, 0x10011630
     li $t1, 0x000000
     li $t2, 5
-L1194:
+D1194:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1194
+    bnez $t2, D1194
     li $t0, 0x10011644
     li $t1, 0x073A19
     sw $t1, 0($t0)
@@ -4194,11 +4194,11 @@ L1194:
     li $t0, 0x1001165C
     li $t1, 0x000000
     li $t2, 6
-L1201:
+D1201:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1201
+    bnez $t2, D1201
     li $t0, 0x10011674
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4208,19 +4208,19 @@ L1201:
     li $t0, 0x1001167C
     li $t1, 0x010101
     li $t2, 2
-L1204:
+D1204:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1204
+    bnez $t2, D1204
     li $t0, 0x10011684
     li $t1, 0x000000
     li $t2, 9
-L1205:
+D1205:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1205
+    bnez $t2, D1205
     li $t0, 0x100116A8
     li $t1, 0xA84609
     sw $t1, 0($t0)
@@ -4299,11 +4299,11 @@ L1205:
     li $t0, 0x1001170C
     li $t1, 0x000000
     li $t2, 6
-L1231:
+D1231:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1231
+    bnez $t2, D1231
     li $t0, 0x10011724
     li $t1, 0x00001C
     sw $t1, 0($t0)
@@ -4313,55 +4313,55 @@ L1231:
     li $t0, 0x1001172C
     li $t1, 0x000000
     li $t2, 6
-L1234:
+D1234:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1234
+    bnez $t2, D1234
     li $t0, 0x10011744
     li $t1, 0x221984
     sw $t1, 0($t0)
     li $t0, 0x10011748
     li $t1, 0x000000
     li $t2, 2
-L1236:
+D1236:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1236
+    bnez $t2, D1236
     li $t0, 0x10011750
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011754
     li $t1, 0x000000
     li $t2, 4
-L1238:
+D1238:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1238
+    bnez $t2, D1238
     li $t0, 0x10011764
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011768
     li $t1, 0x000000
     li $t2, 10
-L1240:
+D1240:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1240
+    bnez $t2, D1240
     li $t0, 0x10011790
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011794
     li $t1, 0x000000
     li $t2, 4
-L1242:
+D1242:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1242
+    bnez $t2, D1242
     li $t0, 0x100117A4
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4389,11 +4389,11 @@ L1242:
     li $t0, 0x100117C4
     li $t1, 0x000000
     li $t2, 5
-L1251:
+D1251:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1251
+    bnez $t2, D1251
     li $t0, 0x100117D8
     li $t1, 0x010A00
     sw $t1, 0($t0)
@@ -4430,33 +4430,33 @@ L1251:
     li $t0, 0x10011804
     li $t1, 0x000000
     li $t2, 7
-L1263:
+D1263:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1263
-    li $t0, 0x10011820
+    bnez $t2, D1263
+    li $t0, 0x10011820 # sombra e base da floresta / entrada do castelo — linha 24, col 8
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011824
     li $t1, 0x000000
     li $t2, 5
-L1265:
+D1265:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1265
+    bnez $t2, D1265
     li $t0, 0x10011838
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x1001183C
     li $t1, 0x000000
     li $t2, 5
-L1267:
+D1267:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1267
+    bnez $t2, D1267
     li $t0, 0x10011850
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4469,22 +4469,22 @@ L1267:
     li $t0, 0x1001185C
     li $t1, 0x000000
     li $t2, 13
-L1271:
+D1271:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1271
+    bnez $t2, D1271
     li $t0, 0x10011890
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011894
     li $t1, 0x000000
     li $t2, 5
-L1273:
+D1273:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1273
+    bnez $t2, D1273
     li $t0, 0x100118A8
     li $t1, 0x0D0000
     sw $t1, 0($t0)
@@ -4509,11 +4509,11 @@ L1273:
     li $t0, 0x100118C4
     li $t1, 0x000000
     li $t2, 4
-L1281:
+D1281:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1281
+    bnez $t2, D1281
     li $t0, 0x100118D4
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4550,66 +4550,66 @@ L1281:
     li $t0, 0x10011900
     li $t1, 0x000000
     li $t2, 18
-L1293:
+D1293:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1293
+    bnez $t2, D1293
     li $t0, 0x10011948
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x1001194C
     li $t1, 0x000000
     li $t2, 4
-L1295:
+D1295:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1295
+    bnez $t2, D1295
     li $t0, 0x1001195C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011960
     li $t1, 0x000000
     li $t2, 2
-L1297:
+D1297:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1297
+    bnez $t2, D1297
     li $t0, 0x10011968
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x1001196C
     li $t1, 0x000000
     li $t2, 6
-L1299:
+D1299:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1299
+    bnez $t2, D1299
     li $t0, 0x10011984
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011988
     li $t1, 0x000000
     li $t2, 5
-L1301:
+D1301:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1301
+    bnez $t2, D1301
     li $t0, 0x1001199C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x100119A0
     li $t1, 0x000000
     li $t2, 2
-L1303:
+D1303:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1303
+    bnez $t2, D1303
     li $t0, 0x100119A8
     li $t1, 0xBA4911
     sw $t1, 0($t0)
@@ -4628,19 +4628,19 @@ L1303:
     li $t0, 0x100119BC
     li $t1, 0x030303
     li $t2, 2
-L1309:
+D1309:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1309
+    bnez $t2, D1309
     li $t0, 0x100119C4
     li $t1, 0x000000
     li $t2, 5
-L1310:
+D1310:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1310
+    bnez $t2, D1310
     li $t0, 0x100119D8
     li $t1, 0x6B7278
     sw $t1, 0($t0)
@@ -4671,11 +4671,11 @@ L1310:
     li $t0, 0x100119FC
     li $t1, 0x000000
     li $t2, 2
-L1320:
+D1320:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1320
+    bnez $t2, D1320
     li $t0, 0x10011A04
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4688,87 +4688,87 @@ L1320:
     li $t0, 0x10011A10
     li $t1, 0x000000
     li $t2, 6
-L1324:
+D1324:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1324
+    bnez $t2, D1324
     li $t0, 0x10011A28
     li $t1, 0x010101
     li $t2, 2
-L1325:
+D1325:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1325
+    bnez $t2, D1325
     li $t0, 0x10011A30
     li $t1, 0x000000
     li $t2, 4
-L1326:
+D1326:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1326
+    bnez $t2, D1326
     li $t0, 0x10011A40
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011A44
     li $t1, 0x000000
     li $t2, 3
-L1328:
+D1328:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1328
+    bnez $t2, D1328
     li $t0, 0x10011A50
     li $t1, 0x010101
     li $t2, 2
-L1329:
+D1329:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1329
+    bnez $t2, D1329
     li $t0, 0x10011A58
     li $t1, 0x000000
     li $t2, 3
-L1330:
+D1330:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1330
+    bnez $t2, D1330
     li $t0, 0x10011A64
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011A68
     li $t1, 0x000000
     li $t2, 7
-L1332:
+D1332:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1332
+    bnez $t2, D1332
     li $t0, 0x10011A84
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011A88
     li $t1, 0x000000
     li $t2, 3
-L1334:
+D1334:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1334
+    bnez $t2, D1334
     li $t0, 0x10011A94
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011A98
     li $t1, 0x000000
     li $t2, 4
-L1336:
+D1336:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1336
+    bnez $t2, D1336
     li $t0, 0x10011AA8
     li $t1, 0xA44414
     sw $t1, 0($t0)
@@ -4787,17 +4787,17 @@ L1336:
     li $t0, 0x10011ABC
     li $t1, 0x000002
     sw $t1, 0($t0)
-    li $t0, 0x10011AC0
+    li $t0, 0x10011AC0 # sombra e base da floresta / entrada do castelo — linha 26, col 48
     li $t1, 0x010000
     sw $t1, 0($t0)
     li $t0, 0x10011AC4
     li $t1, 0x010101
     li $t2, 3
-L1344:
+D1344:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1344
+    bnez $t2, D1344
     li $t0, 0x10011AD0
     li $t1, 0x000000
     sw $t1, 0($t0)
@@ -4843,82 +4843,82 @@ L1344:
     li $t0, 0x10011B08
     li $t1, 0x000000
     li $t2, 3
-L1359:
+D1359:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1359
+    bnez $t2, D1359
     li $t0, 0x10011B14
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011B18
     li $t1, 0x000000
     li $t2, 2
-L1361:
+D1361:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1361
+    bnez $t2, D1361
     li $t0, 0x10011B20
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011B24
     li $t1, 0x000000
     li $t2, 2
-L1363:
+D1363:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1363
+    bnez $t2, D1363
     li $t0, 0x10011B2C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011B30
     li $t1, 0x000000
     li $t2, 12
-L1365:
+D1365:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1365
+    bnez $t2, D1365
     li $t0, 0x10011B60
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011B64
     li $t1, 0x000000
     li $t2, 6
-L1367:
+D1367:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1367
+    bnez $t2, D1367
     li $t0, 0x10011B7C
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011B80
     li $t1, 0x000000
     li $t2, 2
-L1369:
+D1369:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1369
+    bnez $t2, D1369
     li $t0, 0x10011B88
     li $t1, 0x010101
     li $t2, 2
-L1370:
+D1370:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1370
+    bnez $t2, D1370
     li $t0, 0x10011B90
     li $t1, 0x000000
     li $t2, 4
-L1371:
+D1371:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1371
+    bnez $t2, D1371
     li $t0, 0x10011BA0
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4952,11 +4952,11 @@ L1371:
     li $t0, 0x10011BC8
     li $t1, 0x000000
     li $t2, 2
-L1382:
+D1382:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1382
+    bnez $t2, D1382
     li $t0, 0x10011BD0
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -4996,92 +4996,92 @@ L1382:
     li $t0, 0x10011C00
     li $t1, 0x000000
     li $t2, 2
-L1395:
+D1395:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1395
+    bnez $t2, D1395
     li $t0, 0x10011C08
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011C0C
     li $t1, 0x000000
     li $t2, 3
-L1397:
+D1397:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1397
+    bnez $t2, D1397
     li $t0, 0x10011C18
     li $t1, 0x010101
     li $t2, 2
-L1398:
+D1398:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1398
+    bnez $t2, D1398
     li $t0, 0x10011C20
     li $t1, 0x000000
     li $t2, 7
-L1399:
+D1399:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1399
+    bnez $t2, D1399
     li $t0, 0x10011C3C
     li $t1, 0x010101
     li $t2, 2
-L1400:
+D1400:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1400
+    bnez $t2, D1400
     li $t0, 0x10011C44
     li $t1, 0x000000
     li $t2, 4
-L1401:
+D1401:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1401
+    bnez $t2, D1401
     li $t0, 0x10011C54
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011C58
     li $t1, 0x000000
     li $t2, 4
-L1403:
+D1403:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1403
+    bnez $t2, D1403
     li $t0, 0x10011C68
     li $t1, 0x010101
     li $t2, 2
-L1404:
+D1404:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1404
+    bnez $t2, D1404
     li $t0, 0x10011C70
     li $t1, 0x000000
     li $t2, 5
-L1405:
+D1405:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1405
+    bnez $t2, D1405
     li $t0, 0x10011C84
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011C88
     li $t1, 0x000000
     li $t2, 8
-L1407:
+D1407:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1407
+    bnez $t2, D1407
     li $t0, 0x10011CA8
     li $t1, 0x676767
     sw $t1, 0($t0)
@@ -5109,11 +5109,11 @@ L1407:
     li $t0, 0x10011CC8
     li $t1, 0x000000
     li $t2, 2
-L1416:
+D1416:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1416
+    bnez $t2, D1416
     li $t0, 0x10011CD0
     li $t1, 0x010101
     sw $t1, 0($t0)
@@ -5129,7 +5129,7 @@ L1416:
     li $t0, 0x10011CE0
     li $t1, 0x030303
     sw $t1, 0($t0)
-    li $t0, 0x10011CE4
+    li $t0, 0x10011CE4 # sombra e base da floresta / entrada do castelo — linha 28, col 57
     li $t1, 0x70716C
     sw $t1, 0($t0)
     li $t0, 0x10011CE8
@@ -5153,22 +5153,22 @@ L1416:
     li $t0, 0x10011D00
     li $t1, 0x000000
     li $t2, 2
-L1429:
+D1429:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1429
+    bnez $t2, D1429
     li $t0, 0x10011D08
     li $t1, 0x010101
     sw $t1, 0($t0)
     li $t0, 0x10011D0C
     li $t1, 0x000000
     li $t2, 39
-L1431:
+D1431:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1431
+    bnez $t2, D1431
     li $t0, 0x10011DA8
     li $t1, 0x060606
     sw $t1, 0($t0)
@@ -5199,11 +5199,11 @@ L1431:
     li $t0, 0x10011DCC
     li $t1, 0x000000
     li $t2, 2
-L1441:
+D1441:
     sw $t1, 0($t0)
     addiu $t0, $t0, 4
     addiu $t2, $t2, -1
-    bnez $t2, L1441
+    bnez $t2, D1441
     li $t0, 0x10011DD4
     li $t1, 0x070707
     sw $t1, 0($t0)
@@ -5237,7 +5237,7 @@ L1441:
     li $t0, 0x10011DFC
     li $t1, 0x053D56
     sw $t1, 0($t0)
-    li $t0, 0x10011E00
+    li $t0, 0x10011E00 # Início da região: chão de tijolos laranjos (linha 30, col 0)
     li $t1, 0xB25E20
     sw $t1, 0($t0)
     li $t0, 0x10011E04
@@ -5381,7 +5381,7 @@ L1441:
     li $t0, 0x10011EBC
     li $t1, 0x0C0000
     sw $t1, 0($t0)
-    li $t0, 0x10011EC0
+    li $t0, 0x10011EC0 # chão de tijolos laranjos — linha 30, col 48
     li $t1, 0xAB3F00
     sw $t1, 0($t0)
     li $t0, 0x10011EC4
@@ -5618,7 +5618,7 @@ L1441:
     li $t0, 0x10011FF8
     li $t1, 0xB73F03
     sw $t1, 0($t0)
-    li $t0, 0x10011FFC
+    li $t0, 0x10011FFC # chão de tijolos laranjos — linha 31, col 63
     li $t1, 0x6B7979
     sw $t1, 0($t0)
 
