@@ -1,6 +1,8 @@
 .text
-.globl desenha_menu_principal
-desenha_menu_principal:
+.globl exibir_menu_principal   
+
+exibir_menu_principal:
+    # ... código original do menu ...
     li $t0, 0x10010000       # Endereço base do Bitmap Display
 
     # Preenchimento rápido do céu via loop MIPS

@@ -1,187 +1,288 @@
-.data
-# Variáveis de controle do estado do jogo
-estado_jogo:    .word 0      # 0 = Tela de Menu, 1 = Tela de Jogo
-vida_hud:       .word 3      # 3 = Cheia, 2 = 2/3, 1 = 1/3, 0 = Vazia
-pose_richter:   .word 0      # 0 = Parado, 1 = Andar1, 2 = Andar2, 3 = Andar3
+# =========================================================================
+#          MAIN.ASM - ENGINE DE TESTE DE SPRITES, HUD E CENÁRIOS
+# =========================================================================
 
 .text
 .globl main
 
 main:
-    # Inicializa o jogo no Menu Principal (estado 0)
-    li $t2, 0
-    sw $t2, estado_jogo
+    # --- CONFIGURAÇÃO DE HARDWARE ---
+    # $s6 = estado_jogo   (0 = Menu, 1 = Jogo)
+    # $s7 = vida_hud      (3 = Cheia, 2 = 2/3, 1 = 1/3, 0 = Vazia)
+    # $s5 = pose_richter  (0=Parado, 1=Andar1, 2=Andar2, 3=Andar3, 4=Chicote, 5=Dano)
+    # $s3 = cenario_atual (1 = Cenario1, 2 = Cenario2)
+    # $s2 = filtro_inimigos (0 = Nenhum, 1 = Zumbi, 2 = Morcego, 3 = Ambos)
+    # $s4 = precisa_desenhar_fundo (1 = Desenhar fundo neste frame, 0 = Não desenhar)
     
-    # Inicializa os atributos padrão do Richter
-    li $s0, 35               # Coordenada X inicial do Richter
-    li $s1, 36               # Coordenada Y inicial do Richter (Chão)
-    li $t2, 3
-    sw $t2, vida_hud
-    li $t2, 0
-    sw $t2, pose_richter
+    li $s6, 0                # Inicia na Tela de Menu
+    li $s7, 3                # Inicia com Vida Cheia (3/3)
+    li $s5, 0                # Inicia com Richter na pose Parado
+    li $s3, 1                # Padrão: Cenário 1
+    li $s2, 3                # Padrão: Mostrar Ambos os Inimigos
+    li $s4, 1                # Força o primeiro desenho da tela
+
+    # Coordenadas geográficas fixas do Richter
+    li $s0, 35               
+    li $s1, 36               
 
 loop_principal:
-    # 1. Checa em qual tela o jogo está agora
-    lw $t2, estado_jogo
-    beq $t2, 0, renderizar_menu
-    j renderizar_jogo
+    beq $s6, 0, rotina_menu
+    beq $s6, 1, rotina_jogo
+    j frame_delay            
 
 # =========================================================================
-# FLUXO DA TELA DE MENU
+# ROTINA DA TELA DE MENU
 # =========================================================================
-renderizar_menu:
-    # Desenha o menu (Função global que deve estar dentro de Menu.asm)
+rotina_menu:
+    bne $s4, 1, pular_fundo_menu
+    jal limpar_tela_preto
     jal exibir_menu_principal  
-    j checar_teclado
+    li $s4, 0                
+pular_fundo_menu:
+    j checar_teclado         
 
 # =========================================================================
-# FLUXO DA TELA DE JOGO (CENÁRIO + HUD + RICHTER + INIMIGOS)
+# ROTINA DO JOGO
 # =========================================================================
-renderizar_jogo:
-    # 1. Desenha o Cenário de fundo primeiro
+rotina_jogo:
+    # O cenário SÓ é desenhado se o gatilho $s4 for ativado (via teclado ou troca de tela)
+    bne $s4, 1, renderizar_hud
+    
+    jal limpar_tela_preto
+    beq $s3, 1, chamar_background1
+    jal desenha_cenario2     
+    j fim_background
+chamar_background1:
     jal desenha_cenario1     
+fim_background:
+    li $s4, 0                # Trava o desenho do cenário novamente
 
-    # 2. Desenha a HUD dinâmica com base na vida atual
-    lw $t3, vida_hud
-    beq $t3, 3, exibir_hud_3
-    beq $t3, 2, exibir_hud_2
-    beq $t3, 1, exibir_hud_1
-    j exibir_hud_0
+renderizar_hud:
+    # 2. Atualiza a HUD continuamente por cima do cenário estático
+    beq $s7, 3, chamar_hud_3
+    beq $s7, 2, chamar_hud_2
+    beq $s7, 1, chamar_hud_1
+    j chamar_hud_0
 
-exibir_hud_3:
+chamar_hud_3:
     jal desenhar_hud_cheia
-    j desenhar_personagens
-exibir_hud_2:
+    j desenhar_entidades
+chamar_hud_2:
     jal desenhar_hud_2tercos
-    j desenhar_personagens
-exibir_hud_1:
+    j desenhar_entidades
+chamar_hud_1:
     jal desenhar_hud_1terco
-    j desenhar_personagens
-exibir_hud_0:
+    j desenhar_entidades
+chamar_hud_0:
     jal desenhar_hud_vazia
-    # Lógica de Game Over: Zera a vida, volta pro menu principal automaticamente
-    li $t2, 0
-    sw $t2, estado_jogo
-    li $t2, 3                # Reseta a vida para a próxima partida
-    sw $t2, vida_hud
-    j loop_principal
+    
+    # Game Over
+    li $s6, 0
+    li $s7, 3                
+    li $s4, 1                
+    j frame_delay
 
-desenhar_personagens:
-    # 3. Desenha os Inimigos (Fixos no cenário para teste visual)
-    li $a0, 95               # X do Zumbi
-    li $a1, 36               # Y do Zumbi (Chão)
+desenhar_entidades:
+    # 3. Desenha os Inimigos baseados no filtro ativo
+    beq $s2, 0, render_richter 
+    beq $s2, 1, render_zumbi
+    beq $s2, 2, render_morcego
+    
+render_zumbi:
+    li $a0, 95               
+    li $a1, 36               
     jal desenhar_zumbi1
+    beq $s2, 1, render_richter 
 
-    li $a0, 70               # X do Morcego
-    li $a1, 10               # Y do Morcego (Voando alto)
+render_morcego:
+    li $a0, 70               
+    li $a1, 32               
     jal desenhar_morcego1
 
-    # 4. Desenha o Richter baseado na tecla pressionada
-    move $a0, $s0            # Passa a posição X
-    move $a1, $s1            # Passa a posição Y
+render_richter:
+    # 4. Processa e desenha a pose atual selecionada para o Richter
+    move $a0, $s0            
+    move $a1, $s1            
     
-    lw $t4, pose_richter
-    beq $t4, 0, richter_parado
-    beq $t4, 1, richter_andar1
-    beq $t4, 2, richter_andar2
-    j richter_andar3
+    beq $s5, 0, chamar_parado
+    beq $s5, 1, chamar_andar1
+    beq $s5, 2, chamar_andar2
+    beq $s5, 3, chamar_andar3
+    beq $s5, 4, chamar_chicote
+    j chamar_dano
 
-richter_parado:
+chamar_parado:
     jal desenhar_boneco_parado
     j checar_teclado
-richter_andar1:
+chamar_andar1:
     jal desenhar_boneco_andar1
     j checar_teclado
-richter_andar2:
+chamar_andar2:
     jal desenhar_boneco_andar2
     j checar_teclado
-richter_andar3:
+chamar_andar3:
     jal desenhar_boneco_andar3
+    j checar_teclado
+chamar_chicote:
+    jal desenhar_boneco_chicote1   # Desenha Richter atacando!
+    j checar_teclado
+chamar_dano:
+    jal desenhar_boneco_dano      # Desenha Richter sofrendo impacto!
 
 # =========================================================================
-# CONTROLE DE INPUT (MMIO TECLADO SIMULADO)
+# SISTEMA DE CONTROLE DE INPUTS (TECLADO SIMULADO)
 # =========================================================================
 checar_teclado:
-    # Verifica se alguma tecla foi pressionada no simulador
     li $t5, 0xffff0000       
     lw $t6, 0($t5)           
     andi $t6, $t6, 1         
-    beq $t6, $zero, frame_delay # Se nenhuma tecla foi pressionada, pula direto pro delay
+    beq $t6, $zero, frame_delay 
 
-    # Lê o código ASCII da tecla pressionada
     lw $t7, 4($t5)           
 
-    # --- CONTROLES DO MENU ---
-    lw $t2, estado_jogo
-    bne $t2, 0, comandos_jogo # Se não estiver no menu, pula pros comandos de jogo
-    beq $t7, 115, iniciar_jogo # Tecla 's' (ASCII 115) inicia o jogo
+    sw $zero, 4($t5)
+    sw $zero, 0($t5)
+
+    beq $s6, 0, comandos_menu
+    j comandos_jogo
+
+# --- COMANDOS: TELA DE MENU ---
+comandos_menu:
+    beq $t7, 115, acao_iniciar 
     j frame_delay
 
-iniciar_jogo:
-    li $t2, 1
-    sw $t2, estado_jogo      # Muda o estado para Jogo
+acao_iniciar:
+    li $s6, 1                
+    li $s4, 1                
     j frame_delay
 
-# --- CONTROLES DO JOGO ---
+# --- COMANDOS: TELA DE JOGO ---
 comandos_jogo:
-    beq $t7, 109, voltar_menu # Tecla 'm' (ASCII 109) volta pro menu
+    beq $t7, 109, acao_voltar  
     
-    # Poses do Richter (Teclas de movimento simuladas)
-    beq $t7, 97, set_andar1   # Tecla 'a' -> pose andar1
-    beq $t7, 100, set_andar2  # Tecla 'd' -> pose andar2
-    beq $t7, 119, set_andar3  # Tecla 'w' -> pose andar3
-    beq $t7, 32, set_parado   # Tecla Espaço -> volta a ficar parado
+    # Atalho manual de Refresh / Limpeza de rastro (Tecla 'r')
+    beq $t7, 114, acao_refresh # ASCII 114 = 'r'
 
-    # Controle Manual da HUD (Simulação de dano)
-    beq $t7, 51, set_hud3     # Tecla '3' -> HUD 3/3
-    beq $t7, 50, set_hud2     # Tecla '2' -> HUD 2/3
-    beq $t7, 49, set_hud1     # Tecla '1' -> HUD 1/3
-    beq $t7, 48, set_hud0     # Tecla '0' -> HUD 0/3 (Game over)
+    # Seleção de Cenários
+    beq $t7, 49, set_cenario1  
+    beq $t7, 50, set_cenario2  
+
+    # Filtros de Inimigos
+    beq $t7, 122, fil_zumbi    
+    beq $t7, 98, fil_morcego   
+    beq $t7, 99, fil_ambos     
+    beq $t7, 118, fil_nenhum   
+
+    # Seleção de Poses do Richter
+    beq $t7, 97, set_andar1    
+    beq $t7, 100, set_andar2   
+    beq $t7, 119, set_andar3   
+    beq $t7, 120, set_parado   
+    beq $t7, 101, set_chicote  # Tecla 'e' (ASCII 101) -> Ataque!
+    beq $t7, 102, set_dano     # Tecla 'f' (ASCII 102) -> Dano!
+
+    # Teste de Vida da HUD
+    beq $t7, 117, set_hud3     
+    beq $t7, 105, set_hud2     
+    beq $t7, 111, set_hud1     
+    beq $t7, 112, set_hud0     
     j frame_delay
 
-voltar_menu:
-    li $t2, 0
-    sw $t2, estado_jogo
+acao_voltar:
+    li $s6, 0                
+    li $s4, 1                
+    j frame_delay
+
+acao_refresh:
+    li $s4, 1                # Ativa o desenho do fundo por um frame para limpar os clones
+    j frame_delay
+
+# --- ALTERADORES DE ESTADO DESMEMBRADOS ---
+set_cenario1:
+    li $s3, 1
+    li $s4, 1
+    j frame_delay
+
+set_cenario2:
+    li $s3, 2
+    li $s4, 1
+    j frame_delay
+
+fil_nenhum:
+    li $s2, 0
+    j frame_delay
+
+fil_zumbi:
+    li $s2, 1
+    j frame_delay
+
+fil_morcego:
+    li $s2, 2
+    j frame_delay
+
+fil_ambos:
+    li $s2, 3
     j frame_delay
 
 set_andar1:
-    li $t2, 1
-    sw $t2, pose_richter
+    li $s5, 1
     j frame_delay
+
 set_andar2:
-    li $t2, 2
-    sw $t2, pose_richter
+    li $s5, 2
     j frame_delay
+
 set_andar3:
-    li $t2, 3
-    sw $t2, pose_richter
+    li $s5, 3
     j frame_delay
+
 set_parado:
-    li $t2, 0
-    sw $t2, pose_richter
+    li $s5, 0
+    j frame_delay
+
+set_chicote:
+    li $s5, 4
+    j frame_delay
+
+set_dano:
+    li $s5, 5
     j frame_delay
 
 set_hud3:
-    li $t2, 3
-    sw $t2, vida_hud
+    li $s7, 3
     j frame_delay
+
 set_hud2:
-    li $t2, 2
-    sw $t2, vida_hud
+    li $s7, 2
     j frame_delay
+
 set_hud1:
-    li $t2, 1
-    sw $t2, vida_hud
+    li $s7, 1
     j frame_delay
+
 set_hud0:
-    li $t2, 0
-    sw $t2, vida_hud
+    li $s7, 0
+    j frame_delay
 
 # =========================================================================
-# DELAY DE SINCRONIZAÇÃO DA TELA (60 FPS)
+# FUNÇÃO AUXILIAR: LIMPAR TELA COMPLETA
+# =========================================================================
+limpar_tela_preto:
+    li $t0, 0x10010000       
+    li $t1, 32768            
+    li $t3, 0x00000000       
+limpar_loop:
+    sw $t3, 0($t0)           
+    addi $t0, $t0, 4         
+    addi $t1, $t1, -1        
+    bne $t1, $zero, limpar_loop
+    jr $ra
+
+# =========================================================================
+# CONTROLE DO FRAMERATE (60 FPS)
 # =========================================================================
 frame_delay:
-    li $v0, 32               # Syscall Sleep
-    li $a0, 16               # Espera 16 milissegundos
+    li $v0, 32               
+    li $a0, 16               
     syscall                  
-    j loop_principal         # Reinicia o ciclo de renderização
+    j loop_principal
