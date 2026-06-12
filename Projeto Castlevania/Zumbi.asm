@@ -1,1 +1,0 @@
-# fantasma.asm - Controla o inimigo Fantasma. Gerencia o sprite, movimento de flutuacao e dano ao jogador por contato.
