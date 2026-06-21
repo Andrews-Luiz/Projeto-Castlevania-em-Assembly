@@ -2,7 +2,7 @@
 
 .globl desenha_cenario2
 desenha_cenario2:
-    li $t0, 0x10010000       # Base do Display
+    move $t0, $a0       # Base do Display
 
     # Linha 0
     add $v0, $zero, 0

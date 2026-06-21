@@ -2,7 +2,7 @@
 
 .globl desenhar_zumbi1
 desenhar_zumbi1:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -490,7 +490,7 @@ desenhar_zumbi1:
 
 .globl desenhar_zumbi2
 desenhar_zumbi2:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -952,7 +952,7 @@ desenhar_zumbi2:
 
 .globl desenhar_morcego1
 desenhar_morcego1:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -1162,7 +1162,7 @@ desenhar_morcego1:
 
 .globl desenhar_morcego2
 desenhar_morcego2:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7

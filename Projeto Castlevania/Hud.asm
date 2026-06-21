@@ -2,7 +2,7 @@
 
 .globl desenhar_hud_cheia
 desenhar_hud_cheia:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     li $v0, 0
     add $v0, $v0, $t0
@@ -512,7 +512,7 @@ desenhar_hud_cheia:
 
 .globl desenhar_hud_2tercos
 desenhar_hud_2tercos:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     li $v0, 0
     add $v0, $v0, $t0
@@ -1022,7 +1022,7 @@ desenhar_hud_2tercos:
 
 .globl desenhar_hud_1terco
 desenhar_hud_1terco:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     li $v0, 0
     add $v0, $v0, $t0
@@ -1532,7 +1532,7 @@ desenhar_hud_1terco:
 
 .globl desenhar_hud_vazia
 desenhar_hud_vazia:
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a2       # EndereÃ§o base do Bitmap Display
 
     li $v0, 0
     add $v0, $v0, $t0

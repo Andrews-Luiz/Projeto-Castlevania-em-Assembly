@@ -2,10 +2,10 @@
 .globl exibir_menu_principal   
 
 exibir_menu_principal:
-    # ... código original do menu ...
-    li $t0, 0x10010000       # Endereço base do Bitmap Display
+    move $t0, $a0       # $a0 agora é o buffer (passado pelo Main)
+    # O RESTO DO CÓDIGO FICA IGUAL!
 
-    # Preenchimento rápido do céu via loop MIPS
+    # Preenchimento rÃ¡pido do cÃ©u via loop MIPS
     li $t1, 0x00133655
     move $t2, $t0
     li $t3, 8192

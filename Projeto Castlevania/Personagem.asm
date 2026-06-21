@@ -2,7 +2,7 @@
 
 .globl desenhar_boneco_parado
 desenhar_boneco_parado:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -534,7 +534,7 @@ desenhar_boneco_parado:
 
 .globl desenhar_boneco_andar1
 desenhar_boneco_andar1:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -1003,7 +1003,7 @@ desenhar_boneco_andar1:
 
 .globl desenhar_boneco_andar2
 desenhar_boneco_andar2:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -1511,7 +1511,7 @@ desenhar_boneco_andar2:
 
 .globl desenhar_boneco_andar3
 desenhar_boneco_andar3:
-    li $t0, 0x10010000       # EndereÁo base do Bitmap Display
+    move $t0, $a2       # Endere?o base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -1582,7 +1582,7 @@ desenhar_boneco_andar3:
     li $t1, 0x00784000
     sw $t1, 48($v0)
 
-    # --- LINHA 4 EM REVIS√O (LINHA DOS OLHOS) ---
+    # --- LINHA 4 EM REVIS?O (LINHA DOS OLHOS) ---
     add $v0, $a1, 4
     sll $v0, $v0, 7
     add $v0, $v0, $a0
@@ -1598,7 +1598,7 @@ desenhar_boneco_andar3:
     li $t1, 0x00000000
     sw $t1, 32($v0)       # Pupila Esquerda (Preto)
     li $t1, 0x00FCE0A8    
-    sw $t1, 36($v0)       # CORRE«√O: Ponto de pele separando os olhos!
+    sw $t1, 36($v0)       # CORRE??O: Ponto de pele separando os olhos!
     li $t1, 0x00000000
     sw $t1, 40($v0)       # Pupila Direita (Preto)
     li $t1, 0x00FCFCFC
@@ -1606,7 +1606,7 @@ desenhar_boneco_andar3:
     li $t1, 0x00000000
     sw $t1, 48($v0)
 
-    # --- LINHA 5 EM REVIS√O (LINHA DOS OLHOS) ---
+    # --- LINHA 5 EM REVIS?O (LINHA DOS OLHOS) ---
     add $v0, $a1, 5
     sll $v0, $v0, 7
     add $v0, $v0, $a0
@@ -1623,7 +1623,7 @@ desenhar_boneco_andar3:
     li $t1, 0x00000000
     sw $t1, 32($v0)       # Detalhe do Olho (Preto)
     li $t1, 0x00FCE0A8    
-    sw $t1, 36($v0)       # CORRE«√O: Ponto de pele separando os olhos!
+    sw $t1, 36($v0)       # CORRE??O: Ponto de pele separando os olhos!
     li $t1, 0x00000000
     sw $t1, 40($v0)       # Detalhe do Olho (Preto)
     li $t1, 0x00FCFCFC
@@ -1959,7 +1959,7 @@ desenhar_boneco_andar3:
 
 .globl desenhar_boneco_chicote1
 desenhar_boneco_chicote1:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -2551,7 +2551,7 @@ desenhar_boneco_chicote1:
 
 .globl desenhar_boneco_chicote2
 desenhar_boneco_chicote2:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
@@ -3278,7 +3278,7 @@ desenhar_boneco_chicote2:
 
 .globl desenhar_boneco_dano
 desenhar_boneco_dano:
-    li $t0, 0x10010000       # Endere√ßo base do Bitmap Display
+    move $t0, $a2       # Endere√ßo base do Bitmap Display
 
     add $v0, $a1, 0
     sll $v0, $v0, 7
