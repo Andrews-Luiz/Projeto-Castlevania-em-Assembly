@@ -27,8 +27,8 @@
     zumbi_hp_atual:    .word 2        
 
     # --- DELAY DE SPAWN E MOVIMENTO DO MORCEGO ---
-    delay_spawn_zumbi:   .word 0      # sem delay: zumbi aparece na hora
-    delay_spawn_morcego: .word 0      # sem delay: morcego aparece na hora
+    delay_spawn_zumbi:   .word 80     # já "pronto": primeiro zumbi aparece na hora
+    delay_spawn_morcego: .word 80     # idem para o morcego
     morcego_direcao:     .word 1      # 1 = indo para esquerda, 0 = voltando para direita
 
     # --- VIDA E DANO DO RICHTER ---
@@ -48,7 +48,7 @@
 .globl main
 
 main:
-    li $s6, 1                # Direto no Jogo (menu fica para depois)
+    li $s6, 1                # Direto no Jogo (menu fica pendente de investigação)
     li $s7, 3                # Vida Cheia
     li $s5, 0                # Pose Parado
     li $s3, 1                # COMEÇA NO CENÁRIO 1 (PORTÃO)
@@ -112,7 +112,7 @@ gerenciar_inimigos:
     li $t0, 2
     blt $s0, $t0, transicionar_para_portao
 
-    # --- SPAWN DO ZUMBI (instantâneo, sem delay) ---
+    # --- SPAWN DO ZUMBI (com delay de 5 segundos = 300 frames entre eles) ---
     la $t0, zumbi_ativo
     lw $t1, 0($t0)
     bne $t1, $zero, mover_zumbi 
@@ -121,6 +121,15 @@ gerenciar_inimigos:
     lw $t3, 0($t2)
     li $t4, 2
     bge $t3, $t4, testar_morcego 
+
+    # Conta o delay antes de spawnar o próximo
+    la $t2, delay_spawn_zumbi
+    lw $t3, 0($t2)
+    addi $t3, $t3, 1
+    sw $t3, 0($t2)
+    li $t4, 80
+    blt $t3, $t4, testar_morcego    # ainda esperando, não spawna ainda
+    sw $zero, 0($t2)                # reseta o contador de delay
     
     li $t1, 1
     sw $t1, 0($t0)              
@@ -139,7 +148,7 @@ mover_zumbi:
     li $t7, 6
     beq $s5, $t7, checar_colisao_zumbi
 
-    addi $t5, $t5, -2           
+    addi $t5, $t5, -1           
     sw $t5, 0($t6)
     
     blt $t5, $zero, resetar_zumbi_fugiu
@@ -180,9 +189,10 @@ checar_chicote_zumbi:
     lw $t1, 0($t0)
     bne $t1, $zero, desenhar_zumbi_corpo
 
-    # Hitbox generosa do chicote: do X do Richter até +30
-    blt $t5, $s0, desenhar_zumbi_corpo
-    addi $t8, $s0, 30
+    # Hitbox generosa do chicote: alcance amplo, de -8 até +45
+    addi $t9, $s0, -8
+    blt $t5, $t9, desenhar_zumbi_corpo
+    addi $t8, $s0, 45
     bgt $t5, $t8, desenhar_zumbi_corpo
 
     # Acertou! Marca a flag para não acertar de novo nesse golpe
@@ -246,7 +256,7 @@ resetar_zumbi_fugiu:
 
 # -------------------------------------------------------------------------
 testar_morcego:
-    # --- SPAWN DO MORCEGO (instantâneo, sem delay) ---
+    # --- SPAWN DO MORCEGO (com delay de 5 segundos = 300 frames) ---
     la $t0, morcego_ativo
     lw $t1, 0($t0)
     bne $t1, $zero, mover_morcego
@@ -255,6 +265,14 @@ testar_morcego:
     lw $t3, 0($t2)
     li $t4, 2
     bge $t3, $t4, aplicar_gravidade 
+
+    la $t2, delay_spawn_morcego
+    lw $t3, 0($t2)
+    addi $t3, $t3, 1
+    sw $t3, 0($t2)
+    li $t4, 80
+    blt $t3, $t4, aplicar_gravidade
+    sw $zero, 0($t2)
     
     li $t1, 1
     sw $t1, 0($t0)              
@@ -281,7 +299,7 @@ mover_morcego:
     bne $t1, $zero, morcego_vai_esquerda
 
     # Direção 0: voltando para a direita
-    addi $t5, $t5, 3
+    addi $t5, $t5, 2
     li $t2, 120
     blt $t5, $t2, morcego_atualiza_pos
     li $t5, 120
@@ -290,7 +308,7 @@ mover_morcego:
     j morcego_atualiza_pos
 
 morcego_vai_esquerda:
-    addi $t5, $t5, -3
+    addi $t5, $t5, -2
     li $t2, 5
     bgt $t5, $t2, morcego_atualiza_pos
     li $t5, 5
@@ -337,9 +355,9 @@ checar_chicote_morcego:
     lw $t1, 0($t0)
     bne $t1, $zero, desenhar_morcego_corpo
 
-    addi $t9, $s0, -5
+    addi $t9, $s0, -8
     blt $t5, $t9, desenhar_morcego_corpo
-    addi $t8, $s0, 34
+    addi $t8, $s0, 45
     bgt $t5, $t8, desenhar_morcego_corpo
 
     li $t1, 1
@@ -594,7 +612,7 @@ comando_pulo:
     j renderizar_richter
 
 mover_esq:
-    addi $s0, $s0, -3        
+    addi $s0, $s0, -2        
     la $t0, ultima_direcao
     sw $zero, 0($t0)         # 0 = última tecla foi 'a' (esquerda)
     la $t0, no_ar
@@ -610,7 +628,7 @@ set_andar_esq:
     j renderizar_richter
 
 mover_dir:
-    addi $s0, $s0, 3         
+    addi $s0, $s0, 2         
     la $t0, ultima_direcao
     li $t1, 1
     sw $t1, 0($t0)           # 1 = última tecla foi 'd' (direita)
@@ -705,9 +723,13 @@ r_chicote2:
     bne $t1, $zero, volta_pulo
     
     li $s5, 0                
+    la $t0, chicote_acertou
+    sw $zero, 0($t0)
     j mostrar_frame
 volta_pulo:
     li $s5, 2                
+    la $t0, chicote_acertou
+    sw $zero, 0($t0)
     j mostrar_frame
 
 r_dano:
