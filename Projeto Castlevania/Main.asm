@@ -1,17 +1,15 @@
 # =========================================================================
-#          MAIN.ASM - ENGINE CASTLEVANIA 100% DOUBLE BUFFERED & ESTÁVEL
+#          MAIN.ASM - ENGINE CASTLEVANIA 100% DOUBLE BUFFERED & ESTAVEL
 # =========================================================================
 
 .data
     .align 2
-    vram_real:         .space 32768  # Espaço reservado para a tela real (0x10010000)
+    vram_real:         .space 32768
 
-    # --- VARIÁVEIS DE LÓGICA (Totalmente seguras contra apagamento) ---
     jogo_iniciado:     .word 0
     no_ar:             .word 0        
     vel_y:             .word 0        
 
-    # --- INIMIGOS (CENÁRIO 2) ---
     zumbi_ativo:       .word 0        
     zumbi_x:           .word 120      
     zumbi_y:           .word 36       
@@ -25,25 +23,23 @@
 
     zumbi_hp_atual:    .word 2        
 
-    # --- DELAY DE SPAWN E MOVIMENTO ---
     delay_spawn_zumbi:   .word 80     
     delay_spawn_morcego: .word 80     
     morcego_direcao:     .word 1      
 
-    # --- VIDA E DANO DO RICHTER ---
     frames_dano:       .word 0        
     invulneravel:      .word 0        
 
-    # --- CONTROLE DA ANIMAÇÃO DO CHICOTE ---
     frames_chicote1:   .word 0
     frames_chicote2:   .word 0
     chicote_acertou:   .word 0    
 
-    # --- ESQUIVA (TECLA Q) ---
     frames_esquiva:    .word 0
     ultima_direcao:    .word 1    
 
-    # --- BUFFER GRÁFICO OCULTO REAL (Onde a mágica acontece) ---
+    # --- FLAG: 1 = todos inimigos mortos, aguardando jogador chegar na borda ---
+    saida_liberada:    .word 0
+
     .align 2
     buffer_oculto:     .space 32768
 
@@ -51,34 +47,27 @@
 .globl main
 
 main:
-    li $s6, 0                # Começa no Menu (0 = Menu, 1 = Jogo)
-    li $s7, 3                # Vida Cheia
-    li $s5, 0                # Pose Parado
-    li $s3, 1                # COMEÇA NO CENÁRIO 1 (PORTÃO)
+    li $s6, 0
+    li $s7, 3
+    li $s5, 0
+    li $s3, 1
     li $s4, 0                
-    li $s0, 20               # X inicial
-    li $s1, 36               # Y inicial
-    
+    li $s0, 20
+    li $s1, 36
     la $s2, buffer_oculto    
 
 loop_principal:
     beq $s6, 0, rotina_menu
     j rotina_jogo
 
-# =========================================================================
-# ROTINA DO MENU (AGORA 100% DOUBLE BUFFERED)
-# =========================================================================
 rotina_menu:
-    move $a0, $s2            # Passa o buffer oculto para o Menu desenhar em segundo plano
+    move $a0, $s2
     jal exibir_menu_principal
     j checar_teclado
 
-# =========================================================================
-# ROTINA DO JOGO
-# =========================================================================
 rotina_jogo:
     move $a0, $s2
-    jal limpar_buffer_preto  # Passa o pano preto no buffer oculto antes do frame
+    jal limpar_buffer_preto
 
     move $a0, $s2            
     beq $s3, 1, chamar_cen1
@@ -87,7 +76,6 @@ rotina_jogo:
 
 chamar_cen1:
     jal desenha_cenario1     
-    
     li $t0, 95
     bgt $s0, $t0, transicionar_para_saguao
     j aplicar_gravidade       
@@ -103,6 +91,11 @@ transicionar_para_saguao:
 gerenciar_inimigos:
     li $t0, 2
     blt $s0, $t0, transicionar_para_portao
+
+    # Se saida ja liberada, so checar posicao - nao processa mais inimigos
+    la $t0, saida_liberada
+    lw $t1, 0($t0)
+    bne $t1, $zero, checar_posicao_saida
 
     # --- SPAWN DO ZUMBI ---
     la $t0, zumbi_ativo
@@ -134,10 +127,8 @@ gerenciar_inimigos:
 mover_zumbi:
     la $t6, zumbi_x
     lw $t5, 0($t6)
-
     li $t7, 6
     beq $s5, $t7, checar_colisao_zumbi
-
     addi $t5, $t5, -1           
     sw $t5, 0($t6)
     blt $t5, $zero, resetar_zumbi_fugiu
@@ -147,13 +138,11 @@ checar_colisao_zumbi:
     lw $t1, 0($t0)
     bne $t1, $zero, checar_chicote_zumbi   
 
-    # Hitbox Horizontal
     sub $t7, $s0, $t5
     abs $t7, $t7
     li $t8, 6
     bgt $t7, $t8, checar_chicote_zumbi     
 
-    # Hitbox Vertical Corpo a Corpo
     la $t0, zumbi_y
     lw $t1, 0($t0)
     sub $t7, $s1, $t1
@@ -161,7 +150,6 @@ checar_colisao_zumbi:
     li $t8, 8
     bgt $t7, $t8, checar_chicote_zumbi
 
-    # Encostou
     addi $s7, $s7, -1
     li $s5, 6                              
     la $t0, frames_dano
@@ -183,7 +171,6 @@ checar_chicote_zumbi:
     lw $t1, 0($t0)
     bne $t1, $zero, desenhar_zumbi_corpo
 
-    # Alinhamento vertical do chicote com o Zumbi
     la $t2, zumbi_y
     lw $t3, 0($t2)
     sub $t7, $s1, $t3        
@@ -191,7 +178,6 @@ checar_chicote_zumbi:
     li $t8, 10               
     bgt $t7, $t8, desenhar_zumbi_corpo
 
-    # Hitbox Horizontal
     addi $t9, $s0, -8
     blt $t5, $t9, desenhar_zumbi_corpo
     addi $t8, $s0, 45
@@ -234,7 +220,6 @@ desenhar_zumbi_corpo:
     la $t7, zumbi_y
     lw $a1, 0($t7)              
     move $a2, $s2               
-    
     andi $t8, $t5, 4
     beq $t8, $zero, z_frame2
     jal desenhar_zumbi1
@@ -259,7 +244,7 @@ testar_morcego:
     la $t2, morcegos_mortos
     lw $t3, 0($t2)
     li $t4, 2
-    bge $t3, $t4, aplicar_gravidade
+    bge $t3, $t4, todos_mortos          # Morcegos zerados: ir checar vitoria
 
     la $t2, delay_spawn_morcego
     lw $t3, 0($t2)
@@ -284,7 +269,6 @@ testar_morcego:
 mover_morcego:
     la $t6, morcego_x
     lw $t5, 0($t6)
-
     li $t7, 6
     beq $s5, $t7, checar_colisao_morcego
 
@@ -344,7 +328,6 @@ checar_chicote_morcego:
     lw $t1, 0($t0)
     bne $t1, $zero, desenhar_morcego_corpo
 
-    # Alinhamento vertical do chicote com o Morcego 
     la $t2, morcego_y
     lw $t3, 0($t2)
     sub $t7, $s1, $t3        
@@ -352,7 +335,6 @@ checar_chicote_morcego:
     li $t8, 10               
     bgt $t7, $t8, desenhar_morcego_corpo
 
-    # Hitbox Horizontal
     addi $t9, $s0, -8
     blt $t5, $t9, desenhar_morcego_corpo
     addi $t8, $s0, 45
@@ -382,7 +364,6 @@ desenhar_morcego_corpo:
     la $t7, morcego_y
     lw $a1, 0($t7)              
     move $a2, $s2               
-    
     andi $t8, $t5, 4
     beq $t8, $zero, m_frame2
     jal desenhar_morcego1    
@@ -405,10 +386,62 @@ transicionar_para_portao:
     j aplicar_gravidade
 
 # =========================================================================
+# TODOS OS INIMIGOS MORTOS -> LIGA FLAG DE SAIDA (roda uma unica vez)
+# =========================================================================
+todos_mortos:
+    # Checa se zumbis tambem estao todos mortos
+    la $t0, zumbis_mortos
+    lw $t1, 0($t0)
+    li $t2, 2
+    blt $t1, $t2, aplicar_gravidade     # Zumbis ainda vivos: continua
+
+    # Liga a flag (se ainda nao estiver ligada)
+    la $t0, saida_liberada
+    lw $t1, 0($t0)
+    bne $t1, $zero, aplicar_gravidade   # Ja ligada: nao faz nada
+    li $t1, 1
+    sw $t1, 0($t0)                      # saida_liberada = 1
+    j aplicar_gravidade
+
+# =========================================================================
+# CHECAR POSICAO DE SAIDA (roda toda frame apos saida_liberada = 1)
+# Inimigos nao sao mais processados neste estado
+# =========================================================================
+checar_posicao_saida:
+    li $t0, 116
+    blt $s0, $t0, aplicar_gravidade     # Jogador ainda nao chegou na borda
+
+    # Chegou na borda -> reseta tudo e vai pro menu
+    li $s6, 0
+    li $s7, 3
+    li $s0, 20
+    li $s1, 36
+    li $s3, 1
+    li $s5, 0
+    la $t0, invulneravel
+    sw $zero, 0($t0)
+    la $t0, zumbi_ativo
+    sw $zero, 0($t0)
+    la $t0, zumbis_mortos
+    sw $zero, 0($t0)
+    la $t0, morcego_ativo
+    sw $zero, 0($t0)
+    la $t0, morcegos_mortos
+    sw $zero, 0($t0)
+    la $t0, delay_spawn_zumbi
+    li $t1, 80
+    sw $t1, 0($t0)
+    la $t0, delay_spawn_morcego
+    sw $t1, 0($t0)
+    la $t0, saida_liberada
+    sw $zero, 0($t0)
+    j loop_principal
+
+# =========================================================================
 # GAME OVER
 # =========================================================================
 game_over:
-    li $s6, 0                # Reseta direto para o Menu
+    li $s6, 0
     li $s7, 3                
     li $s0, 20                
     li $s1, 36
@@ -424,10 +457,17 @@ game_over:
     sw $zero, 0($t0)
     la $t0, morcegos_mortos
     sw $zero, 0($t0)
+    la $t0, delay_spawn_zumbi
+    li $t1, 80
+    sw $t1, 0($t0)
+    la $t0, delay_spawn_morcego
+    sw $t1, 0($t0)
+    la $t0, saida_liberada
+    sw $zero, 0($t0)
     j loop_principal
 
 # =========================================================================
-# MOTOR DE GRAVIDADE E FÍSICA DO RICHTER
+# MOTOR DE GRAVIDADE E FISICA DO RICHTER
 # =========================================================================
 aplicar_gravidade:
     la $t0, no_ar
@@ -436,7 +476,6 @@ aplicar_gravidade:
     
     la $t2, vel_y
     lw $t3, 0($t2)
-    
     add $s1, $s1, $t3        
     addi $t3, $t3, 3         
     sw $t3, 0($t2)
@@ -590,14 +629,11 @@ comando_pulo:
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, renderizar_richter 
-    
     li $t1, 1
     sw $t1, 0($t0)           
-    
     li $t3, -11              
     la $t2, vel_y
     sw $t3, 0($t2)
-    
     li $s5, 2                
     j renderizar_richter
 
@@ -608,7 +644,6 @@ mover_esq:
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, renderizar_richter 
-    
     addi $s4, $s4, 1         
     li $t0, 2
     blt $s4, $t0, set_andar_esq
@@ -625,7 +660,6 @@ mover_dir:
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, renderizar_richter 
-    
     addi $s4, $s4, 1         
     li $t0, 2
     blt $s4, $t0, set_andar_dir
@@ -638,7 +672,6 @@ atacar_chicote:
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, chicote_aereo 
-    
     li $s5, 4                
     la $t0, frames_chicote1
     sw $zero, 0($t0)
@@ -657,7 +690,6 @@ renderizar_richter:
     move $a0, $s0            
     move $a1, $s1            
     move $a2, $s2            
-    
     beq $s5, 0, r_parado
     beq $s5, 1, r_andar1
     beq $s5, 2, r_andar2
@@ -703,11 +735,9 @@ r_chicote2:
     li $t2, 3
     blt $t1, $t2, mostrar_frame
     sw $zero, 0($t0)
-
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, volta_pulo
-    
     li $s5, 0                
     la $t0, chicote_acertou
     sw $zero, 0($t0)
@@ -723,12 +753,11 @@ r_dano:
     j mostrar_frame
 
 # =========================================================================
-# FLIP GRÁFICO (CÓPIA INSTANTÂNEA EM BLOCO PARA TODO O JOGO E MENU)
+# FLIP GRAFICO
 # =========================================================================
 mostrar_frame:
-    move $a0, $s2            # Origem: buffer_oculto (Menu ou Jogo montado por completo)
-    li $a1, 0x10010000       # Destino: VRAM real visível
-    
+    move $a0, $s2
+    li $a1, 0x10010000
     li $t1, 512
 copiar_loop:
     lw  $t2, 0($a0)
@@ -739,7 +768,6 @@ copiar_loop:
     lw  $t7, 20($a0)
     lw  $t8, 24($a0)
     lw  $t9, 28($a0)
-    
     sw  $t2, 0($a1)
     sw  $t3, 4($a1)
     sw  $t4, 8($a1)
@@ -748,7 +776,6 @@ copiar_loop:
     sw  $t7, 20($a1)
     sw  $t8, 24($a1)
     sw  $t9, 28($a1)
-
     lw  $t2, 32($a0)
     lw  $t3, 36($a0)
     lw  $t4, 40($a0)
@@ -757,7 +784,6 @@ copiar_loop:
     lw  $t7, 52($a0)
     lw  $t8, 56($a0)
     lw  $t9, 60($a0)
-    
     sw  $t2, 32($a1)
     sw  $t3, 36($a1)
     sw  $t4, 40($a1)
@@ -766,7 +792,6 @@ copiar_loop:
     sw  $t7, 52($a1)
     sw  $t8, 56($a1)
     sw  $t9, 60($a1)
-
     addi $a0, $a0, 64
     addi $a1, $a1, 64
     addi $t1, $t1, -1
@@ -779,7 +804,7 @@ frame_delay:
     j loop_principal
 
 # =========================================================================
-# FUNÇÕES DE LIMPEZA GRÁFICA CALIBRADAS (8192 PALAVRAS = 32KB)
+# LIMPEZA GRAFICA
 # =========================================================================
 limpar_buffer_preto:
     move $t0, $a0            
