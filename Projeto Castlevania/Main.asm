@@ -1,5 +1,5 @@
 # =========================================================================
-#          MAIN.ASM - ENGINE CASTLEVANIA 100% DOUBLE BUFFERED & ESTAVEL
+#           MAIN.ASM - ENGINE CASTLEVANIA 100% DOUBLE BUFFERED & ESTAVEL
 # =========================================================================
 
 .data
@@ -18,10 +18,11 @@
     morcego_ativo:     .word 0        
     morcego_x:         .word 120      
     morcego_y:         .word 15       
-    morcego_hp:        .word 1        
+    morcego_hp:        .word 2        # Alterado para 2 de vida inicial
+
     morcegos_mortos:   .word 0        
 
-    zumbi_hp_atual:    .word 2        
+    zumbi_hp_atual:    .word 3        # Alterado para 3 de vida inicial
 
     delay_spawn_zumbi:   .word 80     
     delay_spawn_morcego: .word 80     
@@ -120,7 +121,7 @@ gerenciar_inimigos:
     li $t5, 120
     la $t6, zumbi_x
     sw $t5, 0($t6)              
-    li $t5, 2
+    li $t5, 3                   # Spawn configurado para 3 de HP
     la $t6, zumbi_hp_atual
     sw $t5, 0($t6)              
 
@@ -129,7 +130,7 @@ mover_zumbi:
     lw $t5, 0($t6)
     li $t7, 6
     beq $s5, $t7, checar_colisao_zumbi
-    addi $t5, $t5, -1           
+    addi $t5, $t5, -2           # Velocidade do Zumbi aumentada para -2
     sw $t5, 0($t6)
     blt $t5, $zero, resetar_zumbi_fugiu
 
@@ -259,7 +260,7 @@ testar_morcego:
     li $t5, 120
     la $t6, morcego_x
     sw $t5, 0($t6)              
-    li $t5, 1
+    li $t5, 2                   # Spawn configurado para 2 de HP
     la $t6, morcego_hp
     sw $t5, 0($t6)
     li $t5, 1
@@ -276,7 +277,7 @@ mover_morcego:
     lw $t1, 0($t0)
     bne $t1, $zero, morcego_vai_esquerda
 
-    addi $t5, $t5, 2
+    addi $t5, $t5, 3            # Velocidade indo para direita aumentada para 3
     li $t2, 120
     blt $t5, $t2, morcego_atualiza_pos
     li $t5, 120
@@ -285,7 +286,7 @@ mover_morcego:
     j morcego_atualiza_pos
 
 morcego_vai_esquerda:
-    addi $t5, $t5, -2
+    addi $t5, $t5, -3           # Velocidade indo para esquerda aumentada para -3
     li $t2, 5
     bgt $t5, $t2, morcego_atualiza_pos
     li $t5, 5
@@ -343,9 +344,15 @@ checar_chicote_morcego:
     li $t1, 1
     sw $t1, 0($t0)
 
+    la $t0, morcego_hp
+    lw $t1, 0($t0)
+    addi $t1, $t1, -1
+    sw $t1, 0($t0)
     addi $t5, $t5, 18
     la $t6, morcego_x
     sw $t5, 0($t6)
+    bgt $t1, $zero, efeito_dano_morcego # Se ainda tiver HP, toca efeito de dano e sobrevive
+
     la $t0, morcego_ativo
     sw $zero, 0($t0)
     la $t2, morcegos_mortos
@@ -358,6 +365,14 @@ checar_chicote_morcego:
     move $a2, $s2
     jal impacto_matar
     j aplicar_gravidade
+
+efeito_dano_morcego:
+    move $a0, $t5
+    la $t7, morcego_y
+    lw $a1, 0($t7)
+    move $a2, $s2
+    jal impacto_dano
+    j desenhar_morcego_corpo
 
 desenhar_morcego_corpo:
     move $a0, $t5               
@@ -577,7 +592,24 @@ esquiva_vai_direita:
     addi $s0, $s0, 10
 
 esquiva_finaliza:
-    li $s5, 3                       
+    # --- TRAVA DE SEGURANÇA PARA ESQUIVA ---
+    li $t0, 1
+    bne $s3, $t0, esquiva_clamp_dir
+    li $t0, 2
+    bge $s0, $t0, esquiva_clamp_fim
+    li $s0, 2
+    j esquiva_clamp_fim
+esquiva_clamp_dir:
+    li $t0, 2
+    bne $s3, $t0, esquiva_clamp_fim
+    la $t0, saida_liberada
+    lw $t1, 0($t0)
+    bne $t1, $zero, esquiva_clamp_fim
+    li $t0, 110
+    ble $s0, $t0, esquiva_clamp_fim
+    li $s0, 110
+esquiva_clamp_fim:
+    li $s5, 3                        
     la $t0, frames_esquiva
     sw $zero, 0($t0)
     j renderizar_richter
@@ -639,6 +671,15 @@ comando_pulo:
 
 mover_esq:
     addi $s0, $s0, -2        
+    
+    # --- PAREDE INVISÍVEL ESQUERDA (CENÁRIO 1) ---
+    li $t0, 1
+    bne $s3, $t0, fim_parede_esq
+    li $t0, 2
+    bge $s0, $t0, fim_parede_esq
+    li $s0, 2
+fim_parede_esq:
+
     la $t0, ultima_direcao
     sw $zero, 0($t0)         
     la $t0, no_ar
@@ -654,6 +695,18 @@ set_andar_esq:
 
 mover_dir:
     addi $s0, $s0, 2         
+    
+    # --- PAREDE INVISÍVEL DIREITA (CENÁRIO 2 BLOQUEADO) ---
+    li $t0, 2
+    bne $s3, $t0, fim_parede_dir
+    la $t0, saida_liberada
+    lw $t1, 0($t0)
+    bne $t1, $zero, fim_parede_dir
+    li $t0, 110
+    ble $s0, $t0, fim_parede_dir
+    li $s0, 110
+fim_parede_dir:
+
     la $t0, ultima_direcao
     li $t1, 1
     sw $t1, 0($t0)           
@@ -727,7 +780,7 @@ r_chicote1:
     j mostrar_frame
 
 r_chicote2: 
-    jal desenhar_boneco_chicote2 
+    jal desenhar_boneco_chicote2  
     la $t0, frames_chicote2
     lw $t1, 0($t0)
     addi $t1, $t1, 1
@@ -799,7 +852,7 @@ copiar_loop:
 
 frame_delay:
     li $v0, 32
-    li $a0, 16               
+    li $a0, 16                
     syscall
     j loop_principal
 
