@@ -1,5 +1,19 @@
 # =========================================================================
-#           MAIN.ASM - ENGINE CASTLEVANIA 100% DOUBLE BUFFERED & ESTAVEL
+# INSTRUÇÕES DE CONFIGURAÇÃO DO BITMAP DISPLAY:
+#   - Unit Width in Pixels: 4
+#   - Unit Height in Pixels: 4
+#   - Display Width in Pixels: 512
+#   - Display Height in Pixels: 256
+#   - Base address for display: 0x10010000 (static data)
+#
+# COMANDOS DO TECLADO (MMIO SIMULATOR):
+#   - W: Pular
+#   - A: Mover para a esquerda
+#   - D: Mover para a direita
+#   - E: Atacar com o chicote
+#   - Q: Esquiva
+#   - F: Simular dano
+#   - S: Iniciar o jogo (quando estiver no Menu Principal)
 # =========================================================================
 
 .data
@@ -18,11 +32,11 @@
     morcego_ativo:     .word 0        
     morcego_x:         .word 120      
     morcego_y:         .word 15       
-    morcego_hp:        .word 2        # Alterado para 2 de vida inicial
+    morcego_hp:        .word 2        # 2 de vida inicial
 
     morcegos_mortos:   .word 0        
 
-    zumbi_hp_atual:    .word 3        # Alterado para 3 de vida inicial
+    zumbi_hp_atual:    .word 3        # 3 de vida inicial
 
     delay_spawn_zumbi:   .word 80     
     delay_spawn_morcego: .word 80     
@@ -40,6 +54,9 @@
 
     # --- FLAG: 1 = todos inimigos mortos, aguardando jogador chegar na borda ---
     saida_liberada:    .word 0
+    
+    # --- FLAG: 1 = jogador já atacou uma vez durante o pulo atual ---
+    chicote_no_ar_feito: .word 0
 
     .align 2
     buffer_oculto:     .space 32768
@@ -121,7 +138,7 @@ gerenciar_inimigos:
     li $t5, 120
     la $t6, zumbi_x
     sw $t5, 0($t6)              
-    li $t5, 3                   # Spawn configurado para 3 de HP
+    li $t5, 3                    
     la $t6, zumbi_hp_atual
     sw $t5, 0($t6)              
 
@@ -141,7 +158,7 @@ checar_colisao_zumbi:
 
     sub $t7, $s0, $t5
     abs $t7, $t7
-    li $t8, 6
+    li $t8, 12                  
     bgt $t7, $t8, checar_chicote_zumbi     
 
     la $t0, zumbi_y
@@ -245,7 +262,7 @@ testar_morcego:
     la $t2, morcegos_mortos
     lw $t3, 0($t2)
     li $t4, 2
-    bge $t3, $t4, todos_mortos          # Morcegos zerados: ir checar vitoria
+    bge $t3, $t4, todos_mortos          
 
     la $t2, delay_spawn_morcego
     lw $t3, 0($t2)
@@ -260,7 +277,7 @@ testar_morcego:
     li $t5, 120
     la $t6, morcego_x
     sw $t5, 0($t6)              
-    li $t5, 2                   # Spawn configurado para 2 de HP
+    li $t5, 2                   
     la $t6, morcego_hp
     sw $t5, 0($t6)
     li $t5, 1
@@ -277,7 +294,7 @@ mover_morcego:
     lw $t1, 0($t0)
     bne $t1, $zero, morcego_vai_esquerda
 
-    addi $t5, $t5, 3            # Velocidade indo para direita aumentada para 3
+    addi $t5, $t5, 3            # Velocidade do Morcego aumentada para 3
     li $t2, 120
     blt $t5, $t2, morcego_atualiza_pos
     li $t5, 120
@@ -286,7 +303,7 @@ mover_morcego:
     j morcego_atualiza_pos
 
 morcego_vai_esquerda:
-    addi $t5, $t5, -3           # Velocidade indo para esquerda aumentada para -3
+    addi $t5, $t5, -3           # Velocidade do Morcego aumentada para -3
     li $t2, 5
     bgt $t5, $t2, morcego_atualiza_pos
     li $t5, 5
@@ -302,7 +319,7 @@ checar_colisao_morcego:
 
     sub $t7, $s0, $t5
     abs $t7, $t7
-    li $t8, 6
+    li $t8, 12                  
     bgt $t7, $t8, checar_chicote_morcego
 
     li $t7, 24
@@ -351,7 +368,7 @@ checar_chicote_morcego:
     addi $t5, $t5, 18
     la $t6, morcego_x
     sw $t5, 0($t6)
-    bgt $t1, $zero, efeito_dano_morcego # Se ainda tiver HP, toca efeito de dano e sobrevive
+    bgt $t1, $zero, efeito_dano_morcego 
 
     la $t0, morcego_ativo
     sw $zero, 0($t0)
@@ -404,29 +421,25 @@ transicionar_para_portao:
 # TODOS OS INIMIGOS MORTOS -> LIGA FLAG DE SAIDA (roda uma unica vez)
 # =========================================================================
 todos_mortos:
-    # Checa se zumbis tambem estao todos mortos
     la $t0, zumbis_mortos
     lw $t1, 0($t0)
     li $t2, 2
-    blt $t1, $t2, aplicar_gravidade     # Zumbis ainda vivos: continua
+    blt $t1, $t2, aplicar_gravidade     
 
-    # Liga a flag (se ainda nao estiver ligada)
     la $t0, saida_liberada
     lw $t1, 0($t0)
-    bne $t1, $zero, aplicar_gravidade   # Ja ligada: nao faz nada
+    bne $t1, $zero, aplicar_gravidade   
     li $t1, 1
-    sw $t1, 0($t0)                      # saida_liberada = 1
+    sw $t1, 0($t0)                      
     j aplicar_gravidade
 
 # =========================================================================
 # CHECAR POSICAO DE SAIDA (roda toda frame apos saida_liberada = 1)
-# Inimigos nao sao mais processados neste estado
 # =========================================================================
 checar_posicao_saida:
     li $t0, 116
-    blt $s0, $t0, aplicar_gravidade     # Jogador ainda nao chegou na borda
+    blt $s0, $t0, aplicar_gravidade     
 
-    # Chegou na borda -> reseta tudo e vai pro menu
     li $s6, 0
     li $s7, 3
     li $s0, 20
@@ -492,7 +505,7 @@ aplicar_gravidade:
     la $t2, vel_y
     lw $t3, 0($t2)
     add $s1, $s1, $t3        
-    addi $t3, $t3, 3         
+    addi $t3, $t3, 1         
     sw $t3, 0($t2)
     
     li $t4, 36
@@ -502,6 +515,10 @@ aplicar_gravidade:
     sw $zero, 0($t0)         
     sw $zero, 0($t2)         
     
+    # Reseta a flag de chicotada aérea ao tocar o chão
+    la $t0, chicote_no_ar_feito
+    sw $zero, 0($t0)
+
     li $t4, 6
     beq $s5, $t4, pular_reset_pose
     li $s5, 0                
@@ -663,14 +680,19 @@ comando_pulo:
     bne $t1, $zero, renderizar_richter 
     li $t1, 1
     sw $t1, 0($t0)           
-    li $t3, -11              
+    
+    # Reseta flag de chicotada aérea no início do pulo
+    la $t0, chicote_no_ar_feito
+    sw $zero, 0($t0)
+
+    li $t3, -6                  
     la $t2, vel_y
     sw $t3, 0($t2)
     li $s5, 2                
     j renderizar_richter
 
 mover_esq:
-    addi $s0, $s0, -2        
+    addi $s0, $s0, -2           # Velocidade horizontal aumentada para -2 pixels por frame       
     
     # --- PAREDE INVISÍVEL ESQUERDA (CENÁRIO 1) ---
     li $t0, 1
@@ -684,7 +706,7 @@ fim_parede_esq:
     sw $zero, 0($t0)         
     la $t0, no_ar
     lw $t1, 0($t0)
-    bne $t1, $zero, renderizar_richter 
+    bne $t1, $zero, renderizar_richter  
     addi $s4, $s4, 1         
     li $t0, 2
     blt $s4, $t0, set_andar_esq
@@ -694,7 +716,7 @@ set_andar_esq:
     j renderizar_richter
 
 mover_dir:
-    addi $s0, $s0, 2         
+    addi $s0, $s0, 2            # Velocidade horizontal aumentada para 2 pixels por frame         
     
     # --- PAREDE INVISÍVEL DIREITA (CENÁRIO 2 BLOQUEADO) ---
     li $t0, 2
@@ -712,7 +734,7 @@ fim_parede_dir:
     sw $t1, 0($t0)           
     la $t0, no_ar
     lw $t1, 0($t0)
-    bne $t1, $zero, renderizar_richter 
+    bne $t1, $zero, renderizar_richter  
     addi $s4, $s4, 1         
     li $t0, 2
     blt $s4, $t0, set_andar_dir
@@ -722,6 +744,12 @@ set_andar_dir:
     j renderizar_richter
 
 atacar_chicote:
+    # SISTEMA ANTI-SPAM (CHÃO E AR): Bloqueia input se já estiver executando o ataque
+    li $t0, 4
+    beq $s5, $t0, renderizar_richter
+    li $t0, 5
+    beq $s5, $t0, renderizar_richter
+
     la $t0, no_ar
     lw $t1, 0($t0)
     bne $t1, $zero, chicote_aereo 
@@ -733,6 +761,14 @@ atacar_chicote:
     j renderizar_richter
 
 chicote_aereo:
+    # SISTEMA DE LIMITAÇÃO AÉREA: Impede se já chicoteou uma vez neste pulo
+    la $t0, chicote_no_ar_feito
+    lw $t1, 0($t0)
+    bne $t1, $zero, renderizar_richter
+    
+    li $t1, 1
+    sw $t1, 0($t0)              # Registra o uso único no ar
+
     li $s5, 5                
     j renderizar_richter
 
@@ -771,10 +807,10 @@ r_chicote1:
     lw $t1, 0($t0)
     addi $t1, $t1, 1
     sw $t1, 0($t0)
-    li $t2, 2
+    li $t2, 4                   # Reduzido de 7 para 4 frames para maior agilidade
     blt $t1, $t2, mostrar_frame
     sw $zero, 0($t0)
-    li $s5, 5
+    li $s5, 5                   
     la $t0, frames_chicote2
     sw $zero, 0($t0)
     j mostrar_frame
@@ -785,7 +821,7 @@ r_chicote2:
     lw $t1, 0($t0)
     addi $t1, $t1, 1
     sw $t1, 0($t0)
-    li $t2, 3
+    li $t2, 4                   # Reduzido de 8 para 4 frames para encerramento veloz
     blt $t1, $t2, mostrar_frame
     sw $zero, 0($t0)
     la $t0, no_ar
@@ -852,7 +888,7 @@ copiar_loop:
 
 frame_delay:
     li $v0, 32
-    li $a0, 16                
+    li $a0, 16                  
     syscall
     j loop_principal
 
